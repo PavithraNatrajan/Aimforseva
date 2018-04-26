@@ -1,0 +1,111 @@
+<!--Project Name :AIM for Seva
+Filename : SendNotification.html*
+Purpose /Functionality: A html file to display all the data to the user based on Annual Maintenance
+Author : Mythreyi(id:T0002) -->
+
+
+<ol class="breadcrumb">
+  <li>
+    <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+    </li>
+    <li>
+       <a ui-sref="home.SendNotification">{{activeUrl[2]}}</a>
+    </li>
+</ol>
+    <section class="content-header">
+        </section>
+    <section class="content">
+      <div class="form-group" ng-form name ="form">
+      <div class="row">
+        <div class="col-sm-10">
+          <div class="box box-primary">
+            <div class="box-header">
+              <div class="bg-navy-active color-palette">
+                <br>
+                <h3 class="box-title">Send Wishes</h3>
+              </div>
+            </div>
+          </div>           
+          <div class="row">
+            <div class="col-md-1"></div>
+            <label class="col-md-2 control-label" >Template Name</label>
+            <div class="col-md-3  inputGroupContainer">      
+              <div class="input-group">               
+                <select ng-options="x.template_name for x in allTMaster" name="regData.template_name" class="form-control" ng-model="regData.selitem" ng-change="getselectedval()">  
+                  <option value ="">--select--</option>
+                </select>
+              </div>
+            </div>
+            <label class="col-md-2 control-label" >Donor Id</label>
+            <div class="col-md-2  inputGroupContainer">
+              <div class="input-group">               
+                <select ng-options="x.donor_code for x in allDMaster" name="regData.donor_id" class="form-control" ng-model="regData.selitem1" ng-change="getselectedval1()">  
+                  <option value ="">--select--</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+          <label class="col-md-2 control-label" >first name</label>
+            <div class="col-md-8  inputGroupContainer">
+              <div class="input-group"> 
+                <input name="first_name" class="form-control" ng-value="first_name" disabled="">
+              </div>              
+            </div>
+            <br><br>
+            <label class="col-md-2 control-label" >Last name</label>
+            <div class="col-md-6  inputGroupContainer">
+              <div class="input-group"> 
+                <input name="last_name"  class="form-control" ng-value="last_name" disabled="">
+              </div>
+            </div>
+            <br><br>
+            <label class="col-md-2 control-label" >Mobile number</label>
+            <div class="col-md-6  inputGroupContainer">
+              <div class="input-group">
+                <input name="mobile_no"   class="form-control" ng-value="mobile_no" ng-model="regData.mobile_no" disabled="" >
+              </div>
+              </div>
+              <br><br>
+              <label class="col-md-2 control-label" >Email id</label>
+            <div class="col-md-6  inputGroupContainer">
+              <div class="input-group"> 
+                <input name="email_id" class="form-control" ng-value="email_id" ng-model="regData.email_id" disabled="">
+              </div>              
+            </div>
+            </div>
+          <br>
+          <div class="row">
+          <label class="col-md-2 control-label" >Email sub</label>
+            <div class="col-md-8  inputGroupContainer">
+              <div class="input-group"> 
+                <input name="email_sub"  class="form-control" ng-value="email_sub" disabled="">
+              </div>              
+            </div>
+            <br><br>
+            <label class="col-md-2 control-label" >Email Body</label>
+            <div class="col-md-6  inputGroupContainer" >
+              <div class="input-group"> 
+                <input name="email_content"  class="form-control" ng-value="email_content" disabled="">
+              </div>              
+            </div>
+            <br><br>
+            <label class="col-md-2 control-label" >SMS Body</label>
+            <div class="col-md-6  inputGroupContainer">
+              <div class="input-group">
+                <input name="sms_content"  class="form-control" ng-model="sms_content" disabled="" >
+              </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6  inputGroupContainer">
+                  <button type="submit" ng-disabled="form.$invalid || projectMaintenance.dataLoading" class="btn btn-primary" ng-click="send(regData)">Send Email</button>
+                  <button type="submit" ng-disabled="form.$invalid || projectMaintenance.dataLoading" class="btn btn-primary" ng-click="sendsms(regData)">Send SMS</button>
+              </div>            
+        </div>
+      </div>
+      </div>
+    </div>
+    </section>

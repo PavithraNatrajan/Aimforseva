@@ -1,0 +1,8 @@
+{"level":"verbose","message":"Verbose info","timestamp":"07:32:26"}
+{"level":"info","message":"Hello world","timestamp":"07:32:26"}
+{"level":"warn","message":"Warning message","timestamp":"07:32:26"}
+{"level":"error","message":"Error info","timestamp":"07:32:26"}
+{"level":"verbose","message":"Verbose info","timestamp":"01:42:05"}
+{"level":"info","message":"Hello world","timestamp":"01:42:06"}
+{"level":"warn","message":"Warning message","timestamp":"01:42:06"}
+{"level":"error","message":"Error info","timestamp":"01:42:06"}

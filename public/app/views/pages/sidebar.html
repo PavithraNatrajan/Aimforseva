@@ -1,0 +1,95 @@
+<div class="nav-side-menu">
+<section class="sidebar">
+   <aside class="main-sidebar">
+      <ul class="sidebar-menu" >
+         <div class="user-panel">
+            <div class="pull-left image">
+               <img src="assets/logo.png" class="img-circle" alt="AIM FOR SEVA logo" >
+               {{roleName}}
+               {{role}}
+            </div>
+         </div>
+         <li class="treeview" >
+         <li ng-if="mainNavigation[0].Is_enabled=='Y'" data-toggle="collapse" data-target="#products" class="collapsed ">
+            <a ui-sref-opts="{location:false}" > <i class="fa fa-university"></i><span class="arrow"></span>
+            </i><span>{{mainNavigation[0].navigation}}</span>
+            </a>
+            <ul class="sub-menu collapse" id="products">
+               <li ng-if="subNavigation[0].Is_enabled=='Y'" ng-class="{'active':$state.current.name === 'home.CountryMaster'}">
+                  <a ui-sref="home.CountryMaster" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[0].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[1].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.StateMaster'}"><a ui-sref="home.StateMaster" ui-sref-opts="{location:false}"><span>{{subNavigation[1].navigation}}</span></a></li>
+               <li ng-if="subNavigation[2].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.Campaign'}"><a ui-sref="home.Campaign" ui-sref-opts="{location:false}"><span>{{subNavigation[2].navigation}}</span></a></li>
+               <li ng-if="subNavigation[3].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.RoleMaster'}"><a ui-sref="home.RoleMaster" ui-sref-opts="{location:false}"><span>{{subNavigation[3].navigation}}</span></a></li>
+               <li ng-if="subNavigation[4].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.UserMaster'}"><a ui-sref="home.UserMaster" ui-sref-opts="{location:false}"><span>{{subNavigation[4].navigation}}</span></a></li>
+               <li ng-if="subNavigation[5].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.RoleMapping'}"><a ui-sref="home.RoleMapping" ui-sref-opts="{location:false}"><span>{{subNavigation[5].navigation}}</span></a></li>
+               <li ng-if="subNavigation[6].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.RoleScreenMapping'}"><a ui-sref="home.RoleScreenMapping" ui-sref-opts="{location:false}"><span>{{subNavigation[6].navigation}}</span></a></li>
+               <li ng-if="subNavigation[7].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.PaymentMaster'}"><a ui-sref="home.PaymentMaster" ui-sref-opts="{location:false}"><span>{{subNavigation[7].navigation}}</span></a></li>
+               <li ng-if="subNavigation[8].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.NotificationMaster'}"><a ui-sref="home.NotificationMaster" ui-sref-opts="{location:false}"><span>{{subNavigation[8].navigation}}</span></a></li>
+            </ul>
+         </li>
+         </li>
+         <li ng-if="mainNavigation[1].Is_enabled=='Y'"  data-toggle="collapse" data-target="#service" class="collapsed">
+            <a ui-sref-opts="{location:false}" >
+            <i class="fa fa-building"></i><span class="arrow"></span><span>{{mainNavigation[1].navigation}}</span>
+            </a>
+            <ul class="sub-menu collapse" id="service">
+               <li ng-if="subNavigation[9].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.ProjectCategory'}">
+                  <a ui-sref="home.ProjectCategory" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[9].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[10].Is_enabled=='Y'" 
+                  ng-class="{'active': $state.current.name === 'home.ProjectMaintenanceType'}">
+                  <a ui-sref="home.ProjectMaintenanceType" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[10].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[11].Is_enabled=='Y'" 
+                  ng-class="{'active': $state.current.name === 'home.ProjectMaintenanceSubType'}">
+                  <a ui-sref="home.ProjectMaintenanceSubType" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[11].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[12].Is_enabled=='Y'" 
+                  ng-class="{'active': $state.current.name === 'home.Project'}">
+                  <a ui-sref="home.Project" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[12].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[13].Is_enabled=='Y'" 
+                  ng-class="{'active': $state.current.name === 'home.ProjectList'}">
+                  <a ui-sref="home.ProjectList" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[13].navigation}}</span></a>
+               </li>
+            </ul>
+         </li>
+         <li class="treeview" >
+         <li ng-if="mainNavigation[2].Is_enabled=='Y'" data-toggle="collapse" data-target="#new" class="collapsed">
+            <a ui-sref-opts="{location:false}" ><span class="arrow"></span>
+            <i class="fa fa-building"></i>
+            </i><span>{{mainNavigation[2].navigation}}</span>
+            </a>
+            <ul class="sub-menu collapse" id="new">
+               <li ng-if="subNavigation[14].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.AddDonor'}"><a ui-sref="home.AddDonor" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[14].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[15].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.DonorDetail'}"><a ui-sref="home.DonorDetail" ui-sref-opts="{location:false}"><span>{{subNavigation[15].navigation}}</span></a></li>
+               <li ng-if="subNavigation[16].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.Donation'}"><a ui-sref="home.Donation" ui-sref-opts="{location:false}"><span>{{subNavigation[16].navigation}}</span></a></li>
+               <li ng-if="subNavigation[17].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.GeneralDonation'}"><a ui-sref="home.GeneralDonation" ui-sref-opts="{location:false}"><span>{{subNavigation[17].navigation}}</span></a></li>
+               <li ng-if="subNavigation[18].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.AnnualMaintenance'}"><a ui-sref="home.AnnualMaintenance" ui-sref-opts="{location:false}"><span>{{subNavigation[18].navigation}}</span></a></li>
+               <li ng-if="subNavigation[19].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.BuildingDonor'}"><a ui-sref="home.BuildingDonor" ui-sref-opts="{location:false}"><span>{{subNavigation[19].navigation}}</span></a></li>
+               <li ng-if="subNavigation[20].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.FacilityManagement'}"><a ui-sref="home.FacilityManagement" ui-sref-opts="{location:false}"><span>{{subNavigation[20].navigation}}</span></a></li>
+               <li ng-if="subNavigation[21].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.LandDonor'}"><a ui-sref="home.LandDonor" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[21].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[22].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.SearchPopup'}"><a ui-sref="home.SearchPopup" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[22].navigation}}</span></a>
+               </li>
+               <li ng-if="subNavigation[23].Is_enabled=='Y'" ng-class="{'active': $state.current.name === 'home.SendNotification'}"><a ui-sref="home.SendNotification" ui-sref-opts="{location:false}">
+                  <span>{{subNavigation[23].navigation}}</span></a>
+               </li>
+            </ul>
+         </li>
+         </li>
+         </li>
+      </ul>
+</section>
+</aside>

@@ -1,0 +1,371 @@
+
+<!-- Main content -->
+
+<input type="hidden"  name="role" ng-value="roleName"  ng-init='regData.role=roleName' ng-model="regData.roleName">
+<ol class="breadcrumb">
+  <li>
+    <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+  </li>
+  <li>
+    <a ui-sref="home.FacilityManagement">{{activeUrl[2]}}</a>
+  </li>
+</ol>
+<input type="hidden"  name="role" ng-value="roleName"  ng-init='regData.role=roleName' ng-model="regData.roleName">
+<section class="content">
+   <div class="form-group" ng-form name="form">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="box">
+               <div class="box box-primary">
+                  <div class="box-header">
+                     <div class="bg-navy-active color-palette">
+                        <br>
+                        <h3 class="box-title">&nbsp;&nbsp;Facility Management</h3>
+                     </div>
+                     <br>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="col-md-7  inputGroupContainer">
+                              <input name="code" ng-value="(receiptNo.receipt_no)"  allow-pattern="^[0-9,A-Z]+" placeholder="code" class="form-control"  type="text" ng-init="regData.receipt_no=(ReceiptID.receipt_no)" ng-model="regData.receipt_no" disabled="">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6" >
+                           <label class="col-md-4 control-label">Donor ID</label>
+                           <div class="col-md-7 inputGroupContainer">
+                              <div class="input-group">
+                                 <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                 <select ng-options="x.donor_code for x in allDMaster" name="regData.donor_id" class="form-control" ng-model="regData.selitem" ng-change="getselectedval()">
+                                    <option value="">--Select--</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <input type="hidden" name="donor_code" ng-value="donor_code" ng-model="regData.donor_code">
+                        <div class="col-md-6" >
+                           <label class="col-md-4 control-label">Organization Name</label>
+                           <div class="col-md-7 inputGroupContainer">
+                              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                 <input name="organization_name" ng-value="organization_name" placeholder="Organization Name" class="form-control" type="text"  ng-model="regData.organization_name" ng-minlength="2" ng-maxlength="50" ng-pattern="/^\w+$/" disabled="" >
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-6" >
+                           <label class="col-md-4 control-label">Date</label>
+                           <div class="col-md-7 inputGroupContainer">
+                              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                 <input  name="date" ng-value="Current_Date"    placeholder="Donation Date" class="form-control"   type="text"   ng-model="regData.Current_Date" disabled="" >
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <br>
+                     <button class="accordion">Personal Information</button>
+                     <div class="panel">
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">First Name</label>
+                              <div class="col-md-7 inputGroupContainer">
+                                 <div class="input-group"> 
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input name="first_name" placeholder="First Name" class="form-control" type="text" ng-value="first_name" ng-model="regData.first_name" ng-model="inputname" disabled=""> 
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6" >
+                              <label class="col-md-4 control-label">Last Name</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <input  name="last_name" placeholder="Last Name" class="form-control"   type="text"  ng-value="last_name"  ng-minlength="2" ng-maxlength="50" ng-pattern="/^\w+$/" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <input type="hidden" name="" ng-value="last_name">
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">Mobile No.</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                    <input name="mobile_no" placeholder="Mobile No." ng-value="mobile_no" class="form-control"  type="text" ng-model="regData.mobile_no" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!--dropdown -->
+                     <button class="accordion">Address</button>
+                     <div class="panel">
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6" >
+                              <label class="col-md-4 control-label">Address1</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <input  name="address1" ng-value="address1" placeholder="Address1" class="form-control"   type="text"   ng-model="regData.address1" ng-minlength="2" ng-maxlength="50" ng-pattern="/^\w+$/" disabled=""  >
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">Address 2</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input name="address2" placeholder="Address2" ng-value="address2" class="form-control" type="text" ng-model="regData.address2" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">Address 3</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input name="address3" placeholder="Address3" ng-value="address3" class="form-control" type="text" ng-model="regData.address3" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6 ">
+                              <label class="col-md-4 control-label" >Country Name</label>
+                              <div class="col-md-7 inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                       <li class="glyphicon glyphicon-flag"></li>
+                                    </span>
+                                    <input type="text" name="country" class="form-control" placeholder="Country Name" ng-value="country" ng-model="regData.country" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                           <input type="hidden" name="country_code" ng-value="country_code" ng-model="regData.country_code">
+                        </div>
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6 ">
+                              <label class="col-md-4 control-label" >State Name</label>
+                              <div class="col-md-7 inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                       <li class="glyphicon glyphicon-flag"></li>
+                                    </span>
+                                    <input type="text" name="state" ng-value="state" ng-model="regData.state" class="form-control" placeholder="State Name" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                           <input type="hidden" name="state_code" ng-value="state_code" ng-model="regData.state_code">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">City</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input name="city" placeholder="City" ng-value="city" class="form-control" type="text" ng-model="regData.city" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                           <br>
+                        </div>
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">Postal Code</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input name="postal_code" placeholder="Postal Code" ng-value="postal_code" class="form-control" type="text" disabled="" >
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                     </div>
+                     <!--drop down -->
+                     <button class="accordion">Campaign Details</button>
+                     <div class="panel">
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6" >
+                              <label class="col-md-4 control-label">Campaign </label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <select ng-options="c.campaign_name for c in campaignName"  name="regData.campaign_id" class="form-control" ng-model="regData.selitemcampaign" ng-change="getSelectcampaignName()">
+                                       <option value="">--Select--</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <input type="hidden" ng-value="campaign_id" >
+                           <div class="col-md-6" >
+                              <label class="col-md-4 control-label">Project </label>
+                              <div class="col-md-7 inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <select ng-options="p.project_name for p in projectData" name="regData.project_id" class="form-control" ng-model="regData.selitemproject" ng-change="getSelectprojectData()">
+                                       <option value="">--Select--</option>
+                                    </select>
+                                 </div>
+                              </div>
+                              <input type="hidden" ng-value="project_id" >
+                           </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label" >Project Category</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <select ng-options="s.project_category for s in allProjectMain"  class="form-control" ng-model="regData.selitemProjectCategory" ng-change="getSelectProject()">
+                                       <option value="">--Select--</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label" >Maintenance Type</label>
+                              <div class="col-md-7 inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <select ng-options="s.maintenance_type for s in maintenance"  class="form-control" ng-model="regData.selitemMaintenance" ng-change="getSelectMaintenanceId()">
+                                       <option value="">--Select--</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6" >
+                              <label class="col-md-4 control-label">Sub Type</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <select ng-options="a.sub_type for a in maintenanceSubType"
+                                       name="regData.sub_type_id" class="form-control" ng-change="getSelectMaintenanceSubId()"
+                                       ng-model="regData.selitemSub">
+                                       <option value ="">--Select--</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">Notes</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input name="notes" placeholder="Notes" class="form-control" type="text" ng-model="regData.notes">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                     </div>
+                     <!--dropdown -->
+                     <button class="accordion">Payment Details</button>
+                     <div class="panel">
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label" >Payment Mode</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                       <li class="glyphicon glyphicon-flag"></li>
+                                    </span>
+                                    <select ng-options="a.payment_mode for a in paymentData" name="regData.payment_id" class="form-control" ng-model="regData.selitempayment" ng-change="getSelectpaymentData()" >
+                                       <option value="">--Select--</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6" >
+                              <label class="col-md-4 control-label">Amount(RS)</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <input  name="amount" placeholder="Amount"  class="form-control"   type="text" ng-model="regData.amount"   ng-minlength="2" ng-maxlength="50" ng-pattern="/^\w+$/"  >
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <input type="hidden" ng-value="payment_id" ng-model="regData.payment_id">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label">Bank/Branch Name</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input name="bank" placeholder="Bank/Branch Name" class="form-control" type="text" ng-model="regData.bank">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6" >
+                              <label class="col-md-4 control-label">Cheque No</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                    <input  name="cheque_no" placeholder="Cheque No" class="form-control"   type="text" ng-model="regData.cheque_no"  >
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label class="col-md-4 control-label" >Cheque Date</label>
+                              <div class="col-md-7  inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                       <li class="glyphicon glyphicon-flag"></li>
+                                    </span>
+                                    <input name="cheque_date"  class="form-control"  type="date" data-date="" data-date-format="yyyy-mmm-dd" value="2015-08-09" ng-model="regData.cheque_date">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <br>
+                     </div>
+                     <!--drop down -->
+                     <br>
+                     <div class="row">
+                        <div class="col-md-6" >
+                           <div class="col-md-6 inputGroupContainer"></div>
+                           <div class="col-md-4 inputGroupContainer">
+                              <button type="submit" class="btn btn-block btn-primary" ng-click="setfacility(regData)">Save</button>
+                           </div>
+                        </div>
+                        <div class="col-md-2 inputGroupContainer">
+                           <button type="submit" class="btn btn-block btn-primary">Reset</button>
+                        </div>
+                     </div>
+                     <br>
+                  </div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+ <script>
+var acc = document.getElementsByClassName("accordion");
+
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+    </script>
+
+
+<!--end of Pavithra-->
+
+
+

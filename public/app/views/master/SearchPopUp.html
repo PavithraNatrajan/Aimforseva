@@ -1,0 +1,148 @@
+<!--Project Name :AIM for Seva
+Filename : SearchPopUp.html*
+Purpose /Functionality: A html file to search the records 
+Author : Karthick -->
+
+<ol class="breadcrumb">
+   <li>
+      <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+   </li>
+   <li>
+      <a ui-sref="home.SearchPopup">{{activeUrl[2]}}</a>
+   </li>
+</ol>
+<form name="form" ng-submit="searchpopupFunc1(regData);" ng-controller="customValidation" novalidate>
+   <section class="content-header">
+   </section>
+   <section class="content">
+      <div class="row">
+         <div class="col-sm-10">
+            <div class="box box-primary">
+               <div class="box-header">
+                  <div class="bg-navy-active color-palette">
+                     <br>
+                     <h3 class="box-title">&nbsp;&nbsp;Search</h3>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-5">
+                  <div class="input-group">
+                     <input type="text" ng-model="search" class="form-control" ng-model="search" placeholder="Search">
+                     <span class="input-group-btn">
+                     <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                     </button>
+                     </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+      <div class="col-sm-10" style="background-color: #d2e9f7">
+      <div class="box">
+         <div class="box box-primary" style="background-color: #d2e9f7">
+            <div class="box-header" style="background-color: #d2e9f7">
+               <div class="bg-navy-active color-palette">
+                  <br>
+                  <h3 class="box-title">&nbsp;&nbsp;Results</h3>
+               </div>
+            </div>
+         </div>
+         <div class="box-body" style="background-color: #d2e9f7">
+            <table class="table table-striped">
+               <tr>
+                  <th ng-click="sort('first_name')">Sl. No.
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('first_name')">Donor Code
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Name
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Email
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Phone
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">City
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">View
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+               </tr>
+               <tbody>
+                  <tr dir-paginate="user in searchpopup|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                     <td>{{$index+1}}</td>
+                     <td><input name="donor_code" class="form-control" ng-model="user.donor_code" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                     <td><input name="name" class="form-control"   ng-model="user.first_name" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                     <td><input name="email_id" class="form-control"   ng-model="user.email_id" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                     <td><input name="mobile_no" class="form-control"   ng-model="user.mobile_no" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                     <td><input name="city" class="form-control"   ng-model="user.city" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                     <td><button type="submit" name="" class="btn btn-default btn-sm pop" data-toggle="modal" data-target="#myModal" ng-click="select(user.donor_id)">
+                        <span class="glyphicon glyphicon-eye-open"></span> 
+                        </button>
+                     </td>
+                  </tr>
+                  <td><input type="hidden" name="donor_id" ng-value="donor_id" ng-model="regData.donor_id"></td>
+               </tbody>
+            </table>
+            <dir-pagination-controls
+               max-size="5"
+               direction-links="true"
+               boundary-links="true" >
+            </dir-pagination-controls>
+            <!-- karthi added.................... -->
+            <body>
+               <div class="container" >
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="background-color: #D6634B;">
+                           <div class="modal-header" style="background-color: #D6634B;">
+                              <h4 class="modal-title" id="modal-product-title">Donor Details</h4>
+                           </div>
+                           <div class="modal-body" style="background-color: #D6634B;" >
+<form id="form-dinminder" style="background-color: #D6634B;">
+<div class="form-group" ng-repeat="y in donor1" >  
+<label>
+<table>
+<tr>
+<label class="col-md-4 control-label">Donor Code</label>
+<input type="text" name="y.donor_code" ng-value="y.donor_code" ng-model="regData.donor_code" style="background-color: #D6634B; "></label>
+<label class="col-md-4 control-label">Donor Name</label>
+<input type="text" name="y.first_name" ng-value="y.first_name" ng-model="regData.first_name" style="background-color: #D6634B; "></label></tr><br>       
+<tr>
+<label class="col-md-4 control-label">Mobile No</label>
+<input type="text" name="y.mobile_no" ng-value="y.mobile_no" ng-model="regData.mobile_no" style="background-color: #D6634B; "></label>
+<label class="col-md-4 control-label">City</label>
+<input type="text" name="y.city" ng-value="y.city" ng-model="regData.city"style="background-color: #D6634B; "></label></tr><br>
+<tr>
+<label class="col-md-4 control-label">State</label>
+<input type="text" name="y.state" ng-value="y.state" ng-model="regData.state" style="background-color: #D6634B; "></label>
+<label class="col-md-4 control-label" >Date Of Birth</label>
+<input type="text" name="y.date_of_birth" ng-value="y.date_of_birth" ng-model="regData.date_of_birth" style="background-color: #D6634B; "></tr>
+<tr></label>
+<label class="col-md-4 control-label">PinCode</label>
+<input type="text" name="y.pincode" ng-value="y.pincode" ng-model="regData.pincode" style="background-color: #D6634B; "></label></tr>
+</table>
+</div>       
+</form>    
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+<!-- karthi -->
+</div>
+</div>
+</section>
+</form>

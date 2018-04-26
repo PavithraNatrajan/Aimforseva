@@ -1,0 +1,92 @@
+<!--Project Name :AIM for Seva
+Filename : RoleMapping.html*
+Purpose /Functionality: A html file for mapping different roles to the users
+Author : Karthick -->
+
+
+<ol class="breadcrumb">
+   <li>
+      <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+   </li>
+   <li>
+      <a ui-sref="home.RoleMapping">{{activeUrl[2]}}</a>
+   </li>
+</ol>
+<section class="content-header">
+   <div class="form-group" ng-form name = "form">
+   <div class="row">
+      <div class="col-sm-10">
+         <div class="box">
+            <div class="box box-primary">
+               <div class="box-header">
+                  <div class="bg-navy-active color-palette">
+                     <br>
+                     <h3 class="box-title">&nbsp;&nbsp;Role User Mapping</h3>
+                  </div>
+                  <br>
+                  <div class="box-body no-padding">
+                     <label class="col-md-3 control-label" >User</label>
+                     <div class="col-md-6  inputGroupContainer">
+                        <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                           <select ng-options="x.first_name for x in userName" name="" class="form-control"
+                              ng-model="regData.selitem1"  required="">
+                              <option value="">--select--</option>
+                           </select>
+                        </div>
+                     </div>
+                     <br> 
+                     <br>
+                     <label class="col-md-3 control-label" >Role</label>
+                     <div class="col-md-9  inputGroupContainer" >
+                        <div ng-repeat="role in allRoleMaster">
+                           <label>
+                           <input type="radio"  name="role.role_id" ng-model="selitem" ng-click="select(role.role_id)"
+                              value="No">{{role.role}}</label>
+                        </div>
+                        <input type="hidden" id="user_code" name="user_code" ng-value="regData.selitem1.user_code" ng-model="regData.user_code">
+                        <input type="hidden" id="role_id" name="role_id" ng-value="role_id" ng-model="regData.selitem.role_id">
+                     </div>
+                     <input type="hidden"  name="roleName" ng-value="roleName"  ng-init='regData.roleName=roleName' 
+                        ng-model="regData.roleName">
+                     <br>
+                     <br>
+                     <br>
+                     <div class="col-md-6  inputGroupContainer">
+                        <button type="submit" ng-disabled="form.$invalid || projectMaintenance.dataLoading" class="btn btn-block btn-primary" ng-click="setRolemapping(regData)" ng-disabled="form.$invalid ">Save</button>
+                     </div>
+                     <div class="col-md-6  inputGroupContainer">
+                        <button type="submit" class="btn btn-block btn-primary" ng-click="reset(form)">Reset</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-8">
+                  <table class="table table-striped">
+                     <tr>
+                        <th ng-click="sort('first_name')">Sl. No.
+                           <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('first_name')">Screens Availbale for the Role Selected
+                           <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                     </tr>
+                     <tbody>
+                        <tr  dir-paginate="user in screens|orderBy:sortKey:reverse|filter:search|itemsPerPage:3">
+                           <td>{{$index+1}}</td>
+                           <td><input name="nav_name" class="form-control" ng-model="user.nav_name" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                        </tr>
+                        <td><input type="hidden" name="role_id" ng-value="role_id" ng-model="regData.role_id"></td>
+                     </tbody>
+                  </table>
+               </div>
+               <dir-pagination-controls
+                  max-size="3"
+                  direction-links="true"
+                  boundary-links="true" >
+               </dir-pagination-controls>
+               <body>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

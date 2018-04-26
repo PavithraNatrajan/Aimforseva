@@ -1,0 +1,17 @@
+{"level":"verbose","message":"Verbose info","timestamp":"11:14:02 AM"}
+{"level":"info","message":"Hello world","timestamp":"11:14:02 AM"}
+{"level":"warn","message":"Warning message","timestamp":"11:14:02 AM"}
+{"level":"error","message":"Error info","timestamp":"11:14:02 AM"}
+{"level":"info","message":"schema created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"user created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"schema created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"user created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"schema created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"user created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"schema created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"user created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"photo schema created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"staff schema created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"staff info created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"schema created","timestamp":"11:14:04 AM"}
+{"level":"info","message":"connection created","timestamp":"11:14:04 AM"}

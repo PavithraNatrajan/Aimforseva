@@ -1,0 +1,495 @@
+<div class="col-md-6">
+<div class="box box-solid bg-light-blue-gradient">
+   <div class="box-header">
+      <i class="fa fa-th"></i>
+      <h3 class="box-title">Birthday/Anniversary</h3>
+      <div class="box-tools pull-right">
+         <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+         </button>
+      </div>
+   </div>
+   <section class="content">
+      <div class="row">
+         <div class="col-md-12" >
+            <table class="table table-bordered table-bordered">
+               <thead >
+                  <tr>
+                     <th ng-click="sort('first_name')">S.No
+                        <span class="glyphicon sort-icon"    ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Donor ID
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Name
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Type 
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Date
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Send
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('Active')">View
+                        <span class="glyphicon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+               </thead>
+               <tbody>
+                  <tr dir-paginate="user in DOBRemider|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                     <td>{{$index+1}}</td>
+                     <td>{{user.donor_code}}</td>
+                     <td>{{user.first_name}}</td>
+                     <td>{{user.Type}}</td>
+                     <td>{{user.dob}}</td>
+                     <td>
+                        <button type="button" class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-send" ng-click="editCountry(user)"></i>
+                        </button>
+                     </td>
+                     <td>
+                        <button type="button" name="" class="btn btn-default btn-sm pop" data-toggle="modal" data-target="#myModa11">
+                        <i class="glyphicon glyphicon-eye-open" ng-click="selectAllRecord(user.donor_id)" ></i>
+                        </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <!-- pop added................... -->
+            <body>
+               <div class="container" >
+                  <div class="modal fade" id="myModa11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel11" >
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content"  style="background-color: #D6634B; ">
+                           <div class="modal-header" style=" background-color:  #D6634B;">
+                              <h4 class="modal-title" id="modal-product-title">BirthDay/Anniversary</h4>
+                           </div>
+                           <div class="modal-body" style="background-color: #D6634B; " >
+                              <form id="form-dinminder" style="background-color: #D6634B; ">
+                                 <div  class="form-group" ng-repeat="a in DOB" >
+                                    <table>
+                                       <tr>
+                                          <td>Donor ID</td>
+                                          <td>
+                                             <input type="text" style="background-color: #D6634B; " name="a.donor_code" class="form-control" ng-value="a.donor_code" ng-model="regData.donor_code">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Donor Name</td>
+                                          <td>
+                                             <input type="text"  name="a.first_name" class="form-control" ng-value="a.first_name" ng-model="regData.first_name">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Type</td>
+                                          <td>
+                                             <input type="text" name="a.Type" class="form-control" ng-value="a.Type" ng-model="regData.Type">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Date</td>
+                                          <td>
+                                             <input type="text" name="a.dob" class="form-control" ng-value="a.dob" ng-model="regData.dob">
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </form>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </body>
+            <!-- popup ended -->
+   </section>
+   </div>
+   </div>
+</div>
+<div class="col-md-6">
+<div class="box box-solid bg-light-blue-gradient">
+   <div class="box-header">
+      <i class="fa fa-th"></i>
+      <!--birthday/anniv table-->
+      <h3 class="box-title"> General Donor Reminders</h3>
+      <div class="box-tools pull-right">
+         <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+         </button>
+      </div>
+   </div>
+   <section class="content">
+      <div class="row">
+         <div class="col-md-12" >
+            <table class="table table-bordered table-bordered">
+               <thead >
+                  <tr>
+                     <th ng-click="sort('first_name')">S.No
+                        <span class="glyphicon sort-icon"    ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Donor ID
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Name
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Type 
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Date
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Send
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('Active')">View
+                        <span class="glyphicon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+               </thead>
+               <tbody>
+                  <tr dir-paginate="user in genralRemider|orderBy:sortKey:reverse|filter:search|itemsPerPage:3">
+                     <td>{{$index+1}}</td>
+                     <td>{{user.donor_code}}</td>
+                     <td>{{user.first_name}}</td>
+                     <td>{{user.sub_type}}</td>
+                     <td>{{user.donation_date}}</td>
+                     <td>
+                        <button type="button" class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-send" ng-click="editCountry(user)"></i>
+                        </button>
+                     </td>
+                     <td>
+                        <button type="button" name="" class="btn btn-default btn-sm pop" data-toggle="modal" data-target="#myModa2">
+                        <i class="glyphicon glyphicon-eye-open" ng-click="selectAllSubtypeRecord(user.receipt_no)" ></i>
+                        </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <!-- pop added................... -->
+            <body>
+               <div class="container" >
+                  <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" >
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content"  style="background-color: #D6634B; ">
+                           <div class="modal-header" style=" background-color:  #D6634B;">
+                              <h4 class="modal-title" id="modal-product-title">General Donor Reminder</h4>
+                           </div>
+                           <div class="modal-body" style="background-color: #D6634B; " >
+                              <form id="form-dinminder" style="background-color: #D6634B; ">
+                                 <div  class="form-group" ng-repeat="z in Subtype" >
+                                    <table>
+                                       <tr>
+                                          <td>Donor ID</td>
+                                          <td>
+                                             <input type="text" style="background-color: #D6634B; " name="z.donor_code" class="form-control" ng-value="z.donor_code" ng-model="regData.donor_code">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Donor Name</td>
+                                          <td>
+                                             <input type="text"  name="z.first_name" class="form-control" ng-value="z.first_name" ng-model="regData.first_name">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Type</td>
+                                          <td>
+                                             <input type="text" name="z.sub_type" class="form-control" ng-value="z.sub_type" ng-model="regData.sub_type">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Date</td>
+                                          <td>
+                                             <input type="text" name="z.donation_date" class="form-control" ng-value="z.donation_date" ng-model="regData.donation_date">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Organization Name</td>
+                                          <td>
+                                             <input type="text" name="z.organization_name" class="form-control" ng-value="z.organization_name" ng-model="regData.organization_name">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>country</td>
+                                          <td>
+                                             <input type="text" name="z.country" class="form-control" ng-value="z.country" ng-model="regData.country">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>state</td>
+                                          <td>
+                                             <input type="text" name="z.state" class="form-control" ng-value="z.state" ng-model="regData.state">
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </form>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </body>
+            <!-- popup ended -->
+   </section>
+   </div>
+   </div>
+</div>
+<div class="col-md-6">
+<div class="box box-solid bg-light-blue-gradient">
+   <div class="box-header">
+      <i class="fa fa-th"></i>
+      <!--birthday/anniv table-->
+      <h3 class="box-title">Sponsorship Reminders</h3>
+      <div class="box-tools pull-right">
+         <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+         </button>
+      </div>
+   </div>
+   <section class="content">
+      <div class="row">
+         <div class="col-md-12" >
+            <table class="table table-bordered table-bordered">
+               <thead >
+                  <tr>
+                     <th ng-click="sort('first_name')">S.No
+                        <span class="glyphicon sort-icon"    ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Donor ID
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Name
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Type 
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')"> End Date
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Send
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('Active')">View
+                        <span class="glyphicon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+               </thead>
+               <tbody>
+                  <tr dir-paginate="user in Sponsorshipreminders|orderBy:sortKey:reverse|filter:search|itemsPerPage:3">
+                     <td>{{$index+1}}</td>
+                     <td>{{user.donor_code}}</td>
+                     <td>{{user.first_name}}</td>
+                     <td>{{user.project_category}}</td>
+                     <td>{{user.end_date}}</td>
+                     <td>
+                        <button type="button" class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-send" ng-click="editCountry(user)"></i>
+                        </button>
+                     </td>
+                     <td>
+                        <button type="button" name="" class="btn btn-default btn-sm pop" data-toggle="modal" data-target="#myModal3">
+                        <i class="glyphicon glyphicon-eye-open" ng-click="allSponsorshipremindersRecord(user.donor_id)" ></i>
+                        </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <!-- pop added................... -->
+            <body>
+               <div class="container" >
+                  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabe3" >
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content"  style="background-color: #D6634B; ">
+                           <div class="modal-header" style=" background-color:  #D6634B;">
+                              <h4 class="modal-title" id="modal-product-title">Sponsorship Reminders</h4>
+                           </div>
+                           <div class="modal-body" style="background-color: #D6634B; " >
+                              <form id="form-dinminder" style="background-color: #D6634B; ">
+                                 <div  class="form-group" ng-repeat="y in Sponsorshipreminders" >
+                                    <table>
+                                       <tr>
+                                          <td>Donor ID</td>
+                                          <td>
+                                             <input type="text" style="background-color: #D6634B; " name="y.donor_code" class="form-control" ng-value="y.donor_code" ng-model="regData.donor_code">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Donor Name</td>
+                                          <td>
+                                             <input type="text"  name="y.first_name" class="form-control" ng-value="y.first_name" ng-model="regData.first_name">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Type</td>
+                                          <td>
+                                             <input type="text" name="y.project_category" class="form-control" ng-value="y.project_category" ng-model="regData.project_category">
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Date</td>
+                                          <td>
+                                             <input type="text" name="y.end_date" class="form-control" ng-value="y.end_date" ng-model="regData.end_date">
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </div>
+                              </form>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </body>
+            <!-- popup ended -->
+   </section>
+   </div>
+   </div>
+</div>
+
+<div class="col-md-6">
+<div class="box box-solid bg-light-blue-gradient">
+<div class="box-header">
+   <i class="fa fa-th"></i>
+   <!--birthday/anniv table-->
+   <h3 class="box-title">Project Report Submission Reminder</h3>
+   <div class="box-tools pull-right">
+      <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+   </div>
+</div>
+<section class="content">
+   <div class="row">
+      <div class="col-md-12" >
+         <table class="table table-bordered table-bordered">
+            <thead >
+               <tr>
+                  <th ng-click="sort('first_name')">S.No
+                     <span class="glyphicon sort-icon"    ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('first_name')">project Code
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Project Name
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">City 
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">State
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Due Date
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('Active')">View
+                     <span class="glyphicon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+      </div>
+      </thead>
+      <tbody>
+      <tr dir-paginate="x in project|orderBy:sortKey:reverse|filter:search|itemsPerPage:2">
+      <td>{{$index+1}}</td>
+      <td>{{x.project_code}}</td>
+      <td>{{x.project_name}}</td>
+      <td>{{x.city}}</td>
+      <td>{{x.state}}</td>
+      <td>{{x.report_subm_period}}</td>
+      <td><button type="submit" name="" class="btn btn-default btn-sm pop" data-toggle="modal" data-target="#myModal1" ng-click="select(x.project_id)">
+      <span class="glyphicon glyphicon-eye-open"></span> 
+      </button>
+      </td>                        
+      </tr>
+      </tbody>
+      </table> 
+      <!-- pop added................... -->
+      <body>
+         <div class="container" >
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content" style="background-color: #D6634B;">
+                     <div class="modal-header" style=" background-color:  #D6634B;">
+                        <h4 class="modal-title" id="modal-product-title">Project Report Submission Details</h4>
+                     </div>
+                     <div class="modal-body" style="background-color: #D6634B;"" >
+                        <form id="form-dinminder" style="background-color: #D6634B; ">
+                           <div class="form-group" ng-repeat="z in project1" >
+                              <label>
+                              <table>
+                                 <tr>
+                                    <td>Project Code</td>
+                                    <td>
+                                       <input type="text"  name="z.project_code" class="form-control" ng-value="z.project_code" ng-model="regData.project_code">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>Project Name</td>
+                                    <td>
+                                       <input type="text"  name="z.project_name" class="form-control" ng-value="z.project_name" ng-model="regData.project_name">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>Address 1</td>
+                                    <td>
+                                       <input type="text"  name="z.address1" class="form-control" ng-value="z.address1" ng-model="regData.address1">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>Address 2</td>
+                                    <td>
+                                       <input type="text"  name="z.address2" class="form-control" ng-value="z.address2" ng-model="regData.address2">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>Address 3</td>
+                                    <td>
+                                       <input type="text"  name="z.address3" class="form-control" ng-value="z.address3" ng-model="regData.address3">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>City </td>
+                                    <td>
+                                       <input type="text"  name="z.city" class="form-control" ng-value="z.city" ng-model="regData.city">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>State </td>
+                                    <td>
+                                       <input type="text"  name="z.state" class="form-control" ng-value="z.state" ng-model="regData.state">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>Pin Code </td>
+                                    <td>
+                                       <input type="text"  name="z.postal_code" class="form-control" ng-value="z.postal_code" ng-model="regData.postal_code">
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>Report submit period </td>
+                                    <td>
+                                       <input type="text"  name="z.report_subm_period" class="form-control" ng-value="z.report_subm_period" ng-model="regData.report_subm_period">
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </body>
+      <!-- popup ended -->
+</section>
+</div>

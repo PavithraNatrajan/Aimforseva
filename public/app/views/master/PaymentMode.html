@@ -1,0 +1,143 @@
+<!--Project Name :AIM for Seva
+Filename : PaymentMode.html*
+Purpose /Functionality: A html file to display all the Payment Modes
+Author : Karthick -->
+
+<ol class="breadcrumb">
+   <li>
+      <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+   </li>
+   <li>
+      <a ui-sref="home.PaymentMaster">{{activeUrl[2]}}</a>
+   </li>
+</ol>
+<section class="content">
+   <div class="form-group" ng-form name = "form">
+   <div class="row" >
+      <div class="col-sm-10">
+         <div class="box">
+            <div class="box box-primary">
+               <div class="box-header">
+                  <div class="bg-navy-active color-palette">
+                     <br>
+                     <h3 class="box-title">&nbsp;&nbsp;Add</h3>
+                  </div>
+                  <br>
+                  <div class="box-body no-padding">
+                     <div class="form-group">
+                        <label class="col-md-4 control-label" >payment Code</label>
+                        <div class="col-md-6  inputGroupContainer">
+                           <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                              <input name="pay_code" allow-pattern="^[a-zA-Z0-9]+" onkeydown="upperCaseF(this)" placeholder="payment code" class="form-control"  type="text" ng-model='regData.payment_code' payment-code="3" required>
+                           </div>
+                           <span style="color:red" ng-show="form.pay_code.$touched && form.pay_code.$invalid" >*The Payment Code is required.</span>
+                           <div  style="color:red" ng-show="regData.payment_code.length == 4">*You have reached max input limit</div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-md-4 control-label" >payment Mode</label>
+                        <div class="col-md-6  inputGroupContainer">
+                           <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                              <input name="paymentmode" allow-pattern="^[a-zA-Z0-9]+" placeholder="payment mode" class="form-control"  type="text" ng-model='regData.payment_mode' payment-mode="50" required>
+                           </div>
+                           <span style="color:red" ng-show="form.paymentmode.$touched && form.paymentmode.$invalid" >*The Payment Mode is required.</span>
+                           <div  style="color:red" ng-show="regData.payment_mode.length == 50">*You have reached max input limit</div>
+                        </div>
+                     </div>
+                     <label class="col-md-4 control-label" >Active</label>
+                     <div class="col-md-6  inputGroupContainer">
+                        <div class="form-group">
+                           <label>
+                           <input type="radio" name="r3" class="flat-red" value="Y" ng-model="regData.active">
+                           Yes
+                           </label>&nbsp;&nbsp;                    
+                           <label>
+                           <input type="radio" name="r3" class="flat-red" value="N" ng-model="regData.active">
+                           No
+                           </label>
+                           <input type="hidden"  name="roleName" ng-value="roleName"  ng-init='regData.roleName=roleName' 
+                              ng-model="regData.roleName">
+                        </div>
+                        <div class="col-md-6  inputGroupContainer">
+                           <button type="submit" ng-disabled="form.$invalid || projectMaintenance.dataLoading" class="btn btn-block btn-primary" ng-click="setPayment(regData)">Save</button>
+                        </div>
+                        <div class="col-md-6 inputGroupContainer">
+                           <button type="submit" class="btn btn-block btn-primary" ng-click="reset()">Reset</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-10">
+         <div class="box box-primary">
+            <div class="box-header">
+               <div class="bg-navy-active color-palette">
+                  <br>
+                  <h3 class="box-title">&nbsp;&nbsp; Payment Mode List</h3>
+               </div>
+            </div>
+         </div>
+         <div class="box-body"  style="background-color: #d2e9f7">
+            <form class="form-inline" >
+               <div class="form-group">
+                  <label >Search</label>
+                  <input type="text" ng-model="search" class="form-control" placeholder="Search">
+               </div>
+            </form>
+            <table class="table table-striped table-hover">
+               <thead>
+                  <tr>
+                     <th ng-click="sort('first_name')">Sl. No.
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Payment Code
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Payment Mode
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Active
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Edit
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Update
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Delete
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr dir-paginate="user in countryMaster|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                     <td>{{$index+1}}</td>
+                     <td><i class="glyphicon sort-icon" ng-click="ActiveCountry($index)" >
+                        <input type="text" name="payment_code" class="form-control" ng-model="user.payment_code" maxlength="3" ng-disabled="!enabledEdit[{{$index}}]"/>
+                     </td>
+                     <td><input name="payment_mode" class="form-control"   ng-model="user.payment_mode" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                     <td><i class="glyphicon sort-icon" ng-click="ActiveCountry($index)"  >
+                        <input type="text" name="active" class="form-control" ng-model="user.active" maxlength="1" ng-disabled="!enabledEdit[{{$index}}]"/></i>
+                     </td>
+                     <td><i class="glyphicon glyphicon-pencil" ng-click="editPayment($index)"></i></td>
+                     <td><i class="glyphicon glyphicon-saved" ng-click="update(user)"   ></i></td>
+                     <td><i class="glyphicon glyphicon-remove" ng-click="remove(user.payment_id)"></i></td>
+                     <td><input type="hidden"  name="role1" ng-value="roleName"  ng-init='user.role1=roleName' 
+                        ng-model="user.roleName"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <dir-pagination-controls
+               max-size="5"
+               direction-links="true"
+               boundary-links="true" >
+            </dir-pagination-controls>
+         </div>
+      </div>
+   </div>
+</section>

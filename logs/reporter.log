@@ -1,0 +1,132 @@
+2018-04-05T04:20:38.021Z - info: Initializing jsreport@1.10.0 in development mode using configuration file: none
+2018-04-05T04:20:38.021Z - info: Setting process based strategy for rendering. Please visit http://jsreport.net/learn/configuration for information how to get more performance.
+2018-04-05T04:20:38.037Z - info: Searching for available extensions in D:\pro\Aimforseva\
+2018-04-05T04:20:38.162Z - info: Extensions location cache doesn't contain entry yet, crawling
+2018-04-05T04:20:43.220Z - info: Found 30 extensions
+2018-04-05T04:20:43.345Z - debug: Writing extension locations cache to C:\Users\RANJAN\AppData\Local\Temp\jsreport\core\locations.json
+2018-04-05T04:20:43.345Z - debug: Discovered 30 extensions
+2018-04-05T04:20:43.360Z - info: Using extension import-export
+2018-04-05T04:20:43.854Z - info: Using extension tags
+2018-04-05T04:20:43.869Z - info: Using extension templates
+2018-04-05T04:20:43.869Z - info: Using extension jsrender
+2018-04-05T04:20:43.869Z - info: Using extension authentication
+2018-04-05T04:20:44.229Z - debug: Extension authentication was disabled
+2018-04-05T04:20:44.229Z - info: Using extension cli
+2018-04-05T04:20:44.229Z - info: Using extension handlebars
+2018-04-05T04:20:44.229Z - info: Using extension debug
+2018-04-05T04:20:44.244Z - info: Using extension express
+2018-04-05T04:20:44.413Z - info: Using extension fop-pdf
+2018-04-05T04:20:44.507Z - info: Using extension phantom-pdf
+2018-04-05T04:20:44.649Z - info: Using extension fs-store
+2018-04-05T04:20:44.837Z - debug: Extension fs-store was disabled
+2018-04-05T04:20:44.837Z - info: Using extension authorization
+2018-04-05T04:20:44.931Z - debug: Extension authorization was disabled
+2018-04-05T04:20:44.931Z - info: Using extension images
+2018-04-05T04:20:45.025Z - info: Using extension child-templates
+2018-04-05T04:20:45.040Z - info: Using extension browser-client
+2018-04-05T04:20:45.040Z - info: Using extension licensing
+2018-04-05T04:20:45.244Z - info: Using extension data
+2018-04-05T04:20:45.322Z - info: Using extension text
+2018-04-05T04:20:45.322Z - info: Using extension reports
+2018-04-05T04:20:45.431Z - info: Using extension resources
+2018-04-05T04:20:45.546Z - info: Using extension base
+2018-04-05T04:20:45.546Z - info: Using extension studio
+2018-04-05T04:20:45.812Z - info: Using extension html-to-xlsx
+2018-04-05T04:20:46.218Z - info: Using extension scripts
+2018-04-05T04:20:46.296Z - info: Using extension assets
+2018-04-05T04:20:46.312Z - info: Using extension scheduling
+2018-04-05T04:20:46.401Z - info: Using extension xlsx
+2018-04-05T04:20:46.963Z - info: Using extension sample-template
+2018-04-05T04:20:47.041Z - debug: Creating samples is disabled
+2018-04-05T04:20:47.057Z - info: Using extension public-templates
+2018-04-05T04:20:47.135Z - debug: Extension public-templates was disabled
+2018-04-05T04:20:47.197Z - info: Creating memory store
+2018-04-05T04:20:47.307Z - info: Configuring routes for existing express app.
+2018-04-05T04:20:47.457Z - info: Verifying license key free
+2018-04-05T04:20:47.472Z - info: Using free license
+2018-04-05T04:20:47.472Z - info: reporter initialized
+2018-04-05T04:30:21.478Z - info: Initializing jsreport@1.10.0 in development mode using configuration file: none
+2018-04-05T04:30:21.509Z - info: Setting process based strategy for rendering. Please visit http://jsreport.net/learn/configuration for information how to get more performance.
+2018-04-05T04:30:21.525Z - info: Searching for available extensions in D:\pro\Aimforseva\
+2018-04-05T04:30:21.618Z - info: Extensions location cache contains up to date information, skipping crawling in D:\pro\Aimforseva\node_modules\
+2018-04-05T04:30:21.775Z - info: Found 30 extensions
+2018-04-05T04:30:21.884Z - debug: Writing extension locations cache to C:\Users\RANJAN\AppData\Local\Temp\jsreport\core\locations.json
+2018-04-05T04:30:21.915Z - debug: Discovered 30 extensions
+2018-04-05T04:30:21.931Z - info: Using extension jsrender
+2018-04-05T04:30:21.931Z - info: Using extension fop-pdf
+2018-04-05T04:30:22.118Z - info: Using extension handlebars
+2018-04-05T04:30:22.134Z - info: Using extension templates
+2018-04-05T04:30:22.150Z - info: Using extension html-to-xlsx
+2018-04-05T04:30:22.556Z - info: Using extension data
+2018-04-05T04:30:22.697Z - info: Using extension phantom-pdf
+2018-04-05T04:30:22.962Z - info: Using extension text
+2018-04-05T04:30:22.962Z - info: Using extension assets
+2018-04-05T04:30:23.025Z - info: Using extension scripts
+2018-04-05T04:30:23.134Z - info: Using extension xlsx
+2018-04-05T04:30:24.006Z - info: Creating memory store
+2018-04-05T04:30:24.131Z - info: reporter initialized
+2018-04-05T04:30:24.131Z - info: Starting rendering request 1 (user: null) requestId=1
+2018-04-05T04:30:24.131Z - info: Rendering anonymous template { recipe:undefined,engine:handlebars} requestId=1
+2018-04-05T04:30:24.131Z - debug: Inline data specified. requestId=1
+2018-04-05T04:30:24.225Z - debug: Rendering engine handlebars requestId=1
+2018-04-05T04:30:25.006Z - error: Error when processing render request Error during rendering report: Parse error on line 1:
+...ayLoudly this.name}}
+-----------------------^
+Expecting 'COMMENT', 'CONTENT', 'OPEN_RAW_BLOCK', 'OPEN_BLOCK', 'OPEN_INVERSE', 'OPEN_INVERSE_CHAIN', 'INVERSE', 'OPEN_ENDBLOCK', 'OPEN', 'OPEN_UNESCAPED', 'OPEN_PARTIAL', 'OPEN_PARTIAL_BLOCK', got 'EOF' D:\pro\Aimforseva\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:267
+            throw new Error(str);
+            ^
+
+Error: Parse error on line 1:
+...ayLoudly this.name}}
+-----------------------^
+Expecting 'COMMENT', 'CONTENT', 'OPEN_RAW_BLOCK', 'OPEN_BLOCK', 'OPEN_INVERSE', 'OPEN_INVERSE_CHAIN', 'INVERSE', 'OPEN_ENDBLOCK', 'OPEN', 'OPEN_UNESCAPED', 'OPEN_PARTIAL', 'OPEN_PARTIAL_BLOCK', got 'EOF'
+    at Parser.parseError (D:\pro\Aimforseva\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:267:19)
+    at Parser.parse (D:\pro\Aimforseva\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:336:30)
+    at HandlebarsEnvironment.parse (D:\pro\Aimforseva\node_modules\handlebars\dist\cjs\handlebars\compiler\base.js:46:43)
+    at compileInput (D:\pro\Aimforseva\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:514:19)
+    at ret (D:\pro\Aimforseva\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:523:18)
+    at D:\pro\Aimforseva\node_modules\jsreport-handlebars\lib\handlebarsEngine.js:25:14
+    at evalmachine.<anonymous>:1:41
+    at ContextifyScript.Script.runInContext (vm.js:59:29)
+    at ContextifyScript.Script.runInNewContext (vm.js:65:15)
+    at Object.runInNewContext (vm.js:135:38) requestId=1
+2018-04-06T10:57:06.646Z - info: Initializing jsreport@1.10.0 in development mode using configuration file: jsreport.config.json
+2018-04-06T10:57:06.646Z - info: Setting process based strategy for rendering. Please visit http://jsreport.net/learn/configuration for information how to get more performance.
+2018-04-06T10:57:06.688Z - info: Searching for available extensions in D:\pro\Aimforseva\
+2018-04-06T10:57:06.735Z - info: Extensions location cache C:\Users\RANJAN\AppData\Local\Temp\jsreport\core\locations.json contains older information, crawling
+2018-04-06T10:57:35.729Z - info: Found 30 extensions
+2018-04-06T10:57:35.913Z - info: Using extension import-export
+2018-04-06T10:57:40.170Z - info: Using extension tags
+2018-04-06T10:57:40.274Z - info: Using extension templates
+2018-04-06T10:57:40.431Z - info: Using extension jsrender
+2018-04-06T10:57:40.462Z - info: Using extension cli
+2018-04-06T10:57:40.478Z - info: Using extension handlebars
+2018-04-06T10:57:40.634Z - info: Using extension debug
+2018-04-06T10:57:40.663Z - info: Using extension express
+2018-04-06T10:57:43.313Z - info: Using extension fop-pdf
+2018-04-06T10:57:43.921Z - info: Using extension phantom-pdf
+2018-04-06T10:57:45.163Z - info: Using extension fs-store
+2018-04-06T10:57:49.800Z - info: Using extension authorization
+2018-04-06T10:57:50.340Z - info: Using extension images
+2018-04-06T10:57:51.360Z - info: Using extension child-templates
+2018-04-06T10:57:51.414Z - info: Using extension browser-client
+2018-04-06T10:57:51.437Z - info: Using extension licensing
+2018-04-06T10:57:53.703Z - info: Using extension data
+2018-04-06T10:57:54.203Z - info: Using extension text
+2018-04-06T10:57:54.234Z - info: Using extension reports
+2018-04-06T10:57:54.797Z - info: Using extension resources
+2018-04-06T10:57:55.374Z - info: Using extension base
+2018-04-06T10:57:55.417Z - info: Using extension studio
+2018-04-06T10:57:56.468Z - info: Using extension html-to-xlsx
+2018-04-06T10:57:57.923Z - info: Using extension scripts
+2018-04-06T10:57:58.549Z - info: Using extension assets
+2018-04-06T10:57:58.611Z - info: Using extension scheduling
+2018-04-06T10:57:58.812Z - info: Using extension xlsx
+2018-04-06T10:58:02.953Z - info: Using extension sample-template
+2018-04-06T10:58:03.415Z - info: Using extension public-templates
+2018-04-06T10:58:03.912Z - info: Initializing fs storage at D:\pro\Aimforseva\data
+2018-04-06T10:58:04.218Z - info: Creating default express app.
+2018-04-06T10:58:05.015Z - info: jsreport server successfully started on http port: 3000
+2018-04-06T10:58:05.119Z - info: Verifying license key free
+2018-04-06T10:58:05.135Z - info: Using free license
+2018-04-06T10:58:05.453Z - info: reporter initialized

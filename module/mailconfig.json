@@ -1,0 +1,14 @@
+
+{
+    "service": "gmail",
+    "useremail": "cintanatechnology@gmail.com",
+    "password": "7277593672",
+    "secure": "false",
+    "port": 25,
+    "to": "mythree.gp@gmail.com",
+    "prefix": "Hi Donor",
+    "suffix": "Regards AIM SEVA",
+    "optionaltext": "Contact Us",
+    "readreceipt": "Receipt Read by Donor",
+    "sendattachment": "Y/N"
+}

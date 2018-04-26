@@ -1,0 +1,263 @@
+<!--Project Name :AIM for Seva
+Filename : AnnualMaintenance.html*
+Purpose /Functionality: A html file to display all the data to the user based on Projects
+Author : Deekshitha(id:T0002) -->
+
+
+<ol class="breadcrumb">
+  <li>
+    <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+  </li>
+  <li>
+    <a ui-sref="home.Project">{{activeUrl[2]}}</a>
+  </li>
+</ol>
+<div class="row">
+<div class="col-sm-10" >
+<!-- Main content -->
+<section class="content" >
+   <div class="box">
+      <div class="box box-primary">
+         <div class="box-header">
+            <div class="bg-navy-active color-palette">
+               <br>
+               <h3 class="box-title">Add</h3>
+            </div>
+            <br>
+            <div class="box-body no-padding">
+               <label class="col-md-4 control-label" >Code</label>
+               <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <li class="glyphicon glyphicon-flag"></li>
+                     </span>
+                     <input name="code" onkeydown="upperCaseF(this)" placeholder="code" class="form-control"  type="text"  allow-pattern="^[A-Z0-9]+" ng-model="regData.project_code" project-code="6" required="">
+                  </div>
+                  <span style="color:red;" ng-show="form.code.$touched && form.code.$invalid" >*The Code is required.</span>
+                  <div  style="color:red;" ng-show="regData.project_code.length == 6">*You have reached max input limit</div>
+               </div>
+               <br> <br>
+               <label class="col-md-4 control-label" >Project Name</label>
+               <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <li class="glyphicon glyphicon-flag"></li>
+                     </span>
+                     <input name="projectname" placeholder="Project Name" class="form-control"  type="text" ng-model="regData.project_name" project-name="6" required="">
+                  </div>
+                  <span style="color:red;" ng-show="form.projectname.$touched && form.code.$invalid" >*The project name is required.</span>
+                  <div  style="color:red;" ng-show="regData.project_name.length == 6">*You have reached max input limit</div>
+               </div>
+               <br><br>
+               <label class="col-md-4 control-label" >Address 1</label>
+               <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <li class="glyphicon glyphicon-home"></li>
+                     </span>
+                     <input name="address1" placeholder="Address 1" class="form-control"  type="text" ng-model="regData.address1" add-ress="10" required=" ">
+                  </div>
+                  <span style="color:red;" ng-show="form.address1.$touched && form.address1.$invalid" >*The address is required.</span>
+                  <div  style="color:red;" ng-show="regData.address1.length == 10">*You have reached max input limit</div>
+               </div>
+               <br><br>
+               <label class="col-md-4 control-label" >Address 2</label>
+               <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <li class="glyphicon glyphicon-home"></li>
+                     </span>
+                     <input name="address2" placeholder="Address 2" class="form-control"  type="text" ng-model="regData.address2" add-ress="10" required=" ">
+                  </div>
+                  <span style="color:red;" ng-show="form.address2.$touched && form.address2.$invalid" >*The address is required.</span>
+                  <div  style="color:red;" ng-show="regData.address2.length == 10">*You have reached max input limit</div>
+               </div>
+               <br><br>
+               <label class="col-md-4 control-label" >Address 3</label>
+               <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <li class="glyphicon glyphicon-home"></li>
+                     </span>
+                     <input name="address3" placeholder="Address 3" class="form-control"  type="text" ng-model="regData.address3" add-ress="10" required=" ">
+                  </div>
+                  <span style="color:red;" ng-show="form.address3.$touched && form.address3.$invalid" >*The address is required.</span>
+                  <div  style="color:red;" ng-show="regData.address3.length == 10">*You have reached max input limit</div>
+               </div>
+               <br><br>
+               <label class="col-md-4 control-label" >City</label>
+               <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <li class="glyphicon glyphicon-flag"></li>
+                     </span>
+                     <input name="cityname" placeholder="City" class="form-control"  type="text" ng-model="regData.city" city-name="20" required=" ">
+                  </div>
+                  <span style="color:red;" ng-show="form.cityname.$touched && form.cityname.$invalid" >*The city name is required.</span>
+                  <div  style="color:red;" ng-show="regData.city.length == 20">*You have reached max input limit</div>
+               </div>
+               <br> <br>
+               <input type="hidden"  name="roleName" ng-value="roleName"  ng-init='regData.roleName=roleName' 
+                  ng-model="regData.roleName">
+               <div class="box-body no-padding">
+                  <label class="col-md-4 control-label" >Country Name</label>
+                  <div class="col-md-6 inputGroupContainer">
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                           <li class="glyphicon glyphicon-flag"></li>
+                        </span>
+                        <select ng-options="s.country for s in country"  class="form-control" ng-model="regData.selitem" ng-change="getselectval()">
+                           <option value="">--Select--</option>
+                        </select>
+                     </div>
+                  </div>
+                  <input type="hidden" name="country_code" ng-value="country_code" ng-model="regData.selitem.country_code">
+                  <label class="col-md-4 control-label" >State Name</label>
+                  <div class="col-md-6 inputGroupContainer">
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                           <li class="glyphicon glyphicon-flag"></li>
+                        </span>
+                        <select ng-options="s.state for s in stateName" name="regData.state" class="form-control" ng-value="regData.state_code" ng-model="regData.selitem1" ng-change="getselectval1()">
+                           <option value="">--Select--</option>
+                        </select>
+                     </div>
+                  </div>
+                  <br>
+                  <input type="hidden" name="state_code" ng-value="regData.selitem1.state_code" ng-model="regData.selitem1.state_code">
+                  <br>
+                  <label class="col-md-4 control-label" >Pincode</label>
+                  <div class="col-md-6  inputGroupContainer">
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                           <li class="glyphicon glyphicon-flag"></li>
+                        </span>
+                        <input name="pincode"  allow-pattern="^[0-9]+" placeholder="Write a Pincode" class="form-control"  type="text" ng-model='regData.postal_code' pincode="6" required=" ">
+                     </div>
+                     <span style="color:red;" ng-show="form.pincode.$touched && form.pincode.$invalid" >*The pincode is required.</span>
+                     <div  style="color:red;" ng-show="regData.postal_code.length == 6">*You have reached max input limit</div>
+                  </div>
+               </div>
+               <label class="col-md-4 control-label" >Report Submission period</label>
+               <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <li class="glyphicon glyphicon-flag"></li>
+                     </span>
+                     <input  name="date" class="form-control"  type="number" ng-model='regData.report_subm_period' required="">
+                  </div>
+                  <span style="color:red;" ng-show="form.date.$touched && form.date.$invalid" >*The submission period is required.</span>
+               </div>
+               <br> <br>
+               <label class="col-md-4 control-label">project category </label>
+               <div class="col-md-6 inputGroupContainer">
+                  <div class="input-group">
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                     <select ng-options="l.project_category for l in projectcategoryName"  name="regData.project_category_id" class="form-control" ng-model="regData.selitemcategory" ng-change="getSelectcategoryName()">
+                        <option value="">--Select--</option>
+                     </select>
+                  </div>
+               </div>
+               <input type="hidden" ng-value="project_category_id" >
+               <br>
+               <label class="col-md-4 control-label" >Active</label>
+               <div class="col-md-6 inputGroupContainer">
+                  <div class="form-group">
+                     <label>
+                     <input type="radio" name="r3" value="Y" class="flat-red" ng-model="regData.active">
+                     Yes
+                     </label>
+                     <label>
+                     <input type="radio" name="r3" value="N" class="flat-red" ng-model="regData.active">
+                     No
+                     </label>
+                  </div>
+                  <div class="col-md-6 inputGroupContainer">
+                     <button type="submit" class="btn btn-block btn-primary" ng-click="setProject(regData)">Save</button>
+                  </div>
+                  <div class="col-md-6 inputGroupContainer">
+                     <button type="submit" class="btn btn-block btn-primary">Reset</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<div class="row">
+<div class="col-sm-12"  style="background-color: #d2e9f7">
+<div class="box box-primary">
+   <div class="box-header">
+      <div class="bg-navy-active color-palette">
+         <br>
+         <h3 class="box-title">&nbsp;&nbsp;View Projects</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+         <form class="form-inline" >
+            <div class="form-group">
+               <label >Project Category</label>
+               <input type="text" ng-model="search" class="form-control">
+            </div>
+         </form>
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th ng-click="sort('first_name')">SI.No
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('first_name')">Code
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='project_code'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('first_name')">PROJECT
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='project_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">CITY
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='city'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('state')">State
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='state'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Active
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Edit
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='edit'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('first_name')">Update
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='update'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+                  <th ng-click="sort('last_name')">Delete
+                     <span class="glyphicon sort-icon" ng-show="sortKey=='delete'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr dir-paginate="user in countryMaster|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                  <td>{{$index+1}}</td>
+                  <td><input name="project_code" class="form-control" ng-model="user.project_code" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                  <td><input name="project_name" class="form-control" ng-model="user.project_name" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                  <td><input name="city" class="form-control" ng-model="user.city" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                  <td><input name="country" class="form-control" ng-model="user.state" disabled=""/></td>
+                  <td><input name="active" class="form-control" ng-model="user.active" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                  <td ><i class="glyphicon glyphicon-pencil" ng-click="editproj($index)"></i></td>
+                  <!-- -->
+                  <td><i class="glyphicon glyphicon-saved" ng-click="update(user)"></i></td>
+                  <td><i class="glyphicon glyphicon-remove" ng-click="remove(user.project_id)"></i></td>
+                  <td><input type="hidden"  name="role1" ng-value="roleName"  ng-init='user.role1=roleName' 
+                     ng-model="user.roleName"></td>
+               </tr>
+            </tbody>
+         </table>
+         <dir-pagination-controls
+            max-size="5"
+            direction-links="true"
+            boundary-links="true" >
+         </dir-pagination-controls>
+      </div>
+   </div>
+   <!-- /.box-body -->
+</div>
+</section>
+</form>
+

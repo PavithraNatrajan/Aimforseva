@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11 Nov, 2016, 3:49:12 PM
+    Author     : Oracle
+*/
+
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+    color: #fff;
+    background: #1e282c;
+    border-left-color: #3c8dbc;
+}
+.skin-blue .sidebar-menu>li>a {
+    border-left: 3px solid transparent;
+}
+.skin-blue .sidebar a {
+    color: #b8c7ce;
+}

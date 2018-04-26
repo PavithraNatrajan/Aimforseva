@@ -1,0 +1,227 @@
+<!--Pavithra-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Simple Tables</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Donors</a></li>
+        <li class="active">Donor</li>
+      </ol>
+    </section>
+
+     <section class="content">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="box box-primary">
+            <div class="box-header">
+              <div class="bg-navy-active color-palette">
+                <br>
+                
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Phone Number">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+             <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Donor ID">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+        </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="First Name">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+             <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Last Name">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+            <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="City">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="State">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+            <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Country">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+        </div>  <br><br>
+              
+      <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <div class="box-header">
+              <div class="bg-navy-active color-palette">
+              <br>
+              <h3 class="box-title">&nbsp;&nbsp;Donor List</h3>
+              </div>
+            </div>
+            <!-- /.box-header -->
+              <div class="box-body">
+                <form class="form-inline" >
+                  <div class="form-group">
+                  <label ></label>
+                    <input type="text" ng-model="search" class="form-control">
+                  </div>
+                </form>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th ng-click="sort('project')">Name
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='project'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                      </th>
+                      <th ng-click="sort('city')">Donor ID
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='city'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                      </th>
+                      <th ng-click="sort('state')">Type
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='state'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                      </th>
+                      <th ng-click="sort('contact')">E-mail
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='contact'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                      </th>
+                      <th ng-click="sort('active')">Phone
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='active'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                      </th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                <tr dir-paginate="user in countryMaster|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                  <td>{{user.project}}</td>
+                  <td>{{user.city}}</td>
+                  <td>{{user.state_code}}</td>
+                  <td>{{user.contact_code}}</td>
+                  <td>{{user.active}}</td>
+                  <td>
+                    <button type="button" class="btn bg-teal-gradient btn-sm" ng-click="edit(user.country_code)">
+                      <span class="glyphicon glyphicon-edit"></span>  
+                    </button>
+                    <button type="button" class="btn bg-teal-gradient btn-sm" ng-click="remove(user.country_code)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button> 
+                  </td>
+                </tr>
+              </table> 
+            </div>
+          </div>  <!-- /.box-body -->
+        </div>
+      </section>
+               
+              </div>
+                  
+                </div>
+                  </div>
+
+              </div>
+            </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+</body>
+</html>
+
+<!--end of pavithra-->

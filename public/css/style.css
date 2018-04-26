@@ -1,0 +1,521 @@
+/* Start AdminLTE.css fixes*/
+.box-header > .box-tools {
+  left: 5px;
+}
+
+.box-header > .box-tools button {
+  margin: 0 1px;
+}
+
+.fullscreen-wrapper {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 99999;
+  background-color:#ffa07a;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+/* End AdminLTE.css fixes*/
+
+/* Start of Smart Table Styles */
+.st-sort-ascent:before{
+  content: '\25B2';
+}
+
+.st-sort-descent:before{
+  content: '\25BC';
+}
+
+/* End of Smart Table styles*/
+
+.clswht
+{
+  color:white !important;
+}
+.checkbox label
+{
+  min-height: 0px !important;
+  padding-left: 30px !important;
+}
+
+.redClr
+{
+  color:red;
+  margin-left: -20px;
+  
+}
+.inputControl
+{
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+}
+
+.input-group.input-group-unstyled input.form-control {
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+.input-group-unstyled .input-group-addon {
+    border-radius: 4px;
+    border: 0px;
+    background-color: transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+.accordion {
+background-color: #eee;
+color: #444;
+cursor: pointer;
+padding: 18px;
+width: 100%;
+border: none;
+text-align: left;
+outline: none;
+font-size: 15px;
+transition: 0.4s;
+}
+
+.active, .accordion:hover {
+background-color: #ccc;
+}
+
+.panel {
+padding: 0 18px;
+background-color: #d2e9f7;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.2s ease-out; 
+}
+
+
+   /*footer added by ankit 18/4/2018*/
+/*.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #2e576f;
+   color: white;
+   text-align: left;
+   margin-left: 230px;
+   -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -webkit-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: margin-left 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  margin-left: 230px;
+  z-index: 820;
+}*/
+
+ /*footer end*/
+
+
+ /*nav bar CSS for main scrren  added by ankit 20/4/2018*/
+.nav-side-menu {
+overflow: auto;
+font-family: verdana;
+font-size: 12px;
+font-weight: 200;
+background-color: #2e353d;
+position: fixed;
+top: 0px;
+width: 0px;
+height: auto;
+color: #e1ffff;
+}
+.nav-side-menu .brand {
+background-color: #23282e;
+line-height: 50px;
+display: block;
+text-align: center;
+font-size: 14px;
+}
+.nav-side-menu .toggle-btn {
+display: none;
+}
+.nav-side-menu ul,
+.nav-side-menu li {
+list-style: none;
+padding: 0px;
+margin: 0px;
+line-height: 35px;
+cursor: pointer;
+/* 
+.collapsed{
+.arrow:before{
+font-family: FontAwesome;
+content: "\f053";
+display: inline-block;
+padding-left:10px;
+padding-right: 10px;
+vertical-align: middle;
+float:right;
+}
+}
+*/
+}
+.nav-side-menu ul :not(collapsed) .arrow:before,
+.nav-side-menu li :not(collapsed) .arrow:before {
+font-family: FontAwesome;
+content: "\f078";
+display: inline-block;
+padding-left: 10px;
+padding-right: 10px;
+vertical-align: middle;
+float: right;
+}
+.nav-side-menu ul .active,
+.nav-side-menu li .active {
+border-left: 3px solid #d19b3d;
+background-color: #4f5b69;
+}
+.nav-side-menu ul .sub-menu li.active,
+.nav-side-menu li .sub-menu li.active {
+color: #d19b3d;
+}
+.nav-side-menu ul .sub-menu li.active a,
+.nav-side-menu li .sub-menu li.active a {
+color: #d19b3d;
+}
+.nav-side-menu ul .sub-menu li,
+.nav-side-menu li .sub-menu li {
+background-color: #181c20;
+border: none;
+line-height: 28px;
+border-bottom: 1px solid #23282e;
+margin-left: 0px;
+}
+.nav-side-menu ul .sub-menu li:hover,
+.nav-side-menu li .sub-menu li:hover {
+background-color: #020203;
+}
+.nav-side-menu ul .sub-menu li:before,
+.nav-side-menu li .sub-menu li:before {
+font-family: FontAwesome;
+content: "\f105";
+display: inline-block;
+padding-left: 10px;
+padding-right: 10px;
+vertical-align: middle;
+}
+.nav-side-menu li {
+padding-left: 0px;
+border-left: 3px solid #2e353d;
+border-bottom: 1px solid #23282e;
+}
+.nav-side-menu li a {
+text-decoration: none;
+color: #e1ffff;
+}
+.nav-side-menu li a i {
+padding-left: 10px;
+width: 20px;
+padding-right: 20px;
+}
+/*.nav-side-menu li:hover {
+border-left: 3px blue;
+background-color: blue
+;
+-webkit-transition: all 1s ease;
+-moz-transition: all 1s ease;
+-o-transition: all 1s ease;
+-ms-transition: all 1s ease;
+transition: all 1s ease;
+}*/
+@media (max-width: 767px) {
+.nav-side-menu {
+position: relative;
+width: 100%;
+margin-bottom: 10px;
+}
+.nav-side-menu .toggle-btn {
+display: block;
+cursor: pointer;
+position: absolute;
+right: 10px;
+top: 10px;
+z-index: 10 !important;
+padding: 3px;
+background-color: #ffffff;
+color: #000;
+width: 40px;
+text-align: center;
+}
+
+.brand {
+text-align: left !important;
+font-size: 22px;
+padding-left: 20px;
+line-height: 50px !important;
+}
+}
+
+@media (min-width: 767px) {
+.nav-side-menu .menu-list .menu-content {
+display: block;
+}
+}
+body {
+margin: 0px;
+padding: 0px;
+}
+.skin-blue .left-side {
+  background: #222d32;
+}
+
+
+
+ .icon-bar {
+    width: 80px;
+    background-color: #2e576f;
+    color: white;
+
+}
+
+.icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 30px;
+    background-color: #2e576f;
+    height:50px;
+  }
+
+.icon-bar a:hover {
+    background-color: #2e576f;
+}
+
+
+/*nav bar end */
+
+
+/*#myFooter {
+    background-color: #3c3d41;
+    color: white;
+    padding-top: 30px;
+}
+
+#myFooter .footer-copyright {
+    background-color: #333333;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+#myFooter .row {
+    margin-bottom: 60px;
+}
+
+#myFooter .navbar-brand {
+    margin-top: 45px;
+    height: 65px;
+}
+
+#myFooter .footer-copyright p {
+    margin: 10px;
+    color: #ccc;
+}
+
+#myFooter ul {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+}
+
+#myFooter h5 {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter h2 a{
+    font-size: 50px;
+    text-align: center;
+    color: #fff;
+}
+
+#myFooter a {
+    color: #d2d1d1;
+    text-decoration: none;
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+#myFooter .social-networks {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 16px;
+}
+
+#myFooter .social-networks a {
+    font-size: 32px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+#myFooter .social-networks a:hover {
+    text-decoration: none;
+}
+
+#myFooter .facebook:hover {
+    color: #0077e2;
+}
+
+#myFooter .google:hover {
+    color: #ef1a1a;
+}
+
+#myFooter .twitter:hover {
+    color: #00aced;
+}
+
+#myFooter .btn {
+    color: white;
+    background-color: #d84b6b;
+    border-radius: 20px;
+    border: none;
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    line-height: 25px;
+}
+
+@media screen and (max-width: 767px) {
+    #myFooter {
+        text-align: center;
+    }
+}*/
+
+
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
+/*#mySidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+    left: 0;
+}
+
+#about {
+    top: 20px;
+    background-color: #4CAF50;
+}
+
+#blog {
+    top: 80px;
+    background-color: #2196F3;
+}
+
+#projects {
+    top: 140px;
+    background-color: #f44336;
+}
+
+#contact {
+    top: 200px;
+    background-color: #555
+}
+*/
+
+
+
+/*.topnav-right {
+  float: right;
+}
+*/
+
+/* This CSS for Home.html  header icon for logout and dashboard*/
+.icon-bar {
+  float: right;
+  /*  width: auto;*/
+   height: 30px;
+   margin-top: -15px;
+   margin-right: 20px;
+  
+
+}
+/*
+.background{
+  background-image: url("https://static4.depositphotos.com/1016211/318/i/950/depositphotos_3189818-stock-photo-money-blur.jpg");
+  font-size: 12px;
+  font-style: bold;
+  font-family: verdana;
+
+
+}  
+
+ 
+
+ .birthdaybackground{
+  background-image: url("https://c7.alamy.com/comp/KGH24D/colorful-flag-banner-and-confetti-on-wood-table-with-blur-green-tree-KGH24D.jpg");
+ font-size: 12px;
+  font-style: bold;
+  font-family: verdana;
+
+}
+
+ .projectBackgroound{
+  background-image: url("https://thumbs.dreamstime.com/b/yen-japan-coin-currency-other-world-coins-original-macro-photo-photo-blur-58161597.jpg");
+ font-size: 12px;
+  font-style: bold;
+  font-family: verdana;
+}
+
+
+
+
+ .projectBackgroound{
+  background-image: url("https://thumbs.dreamstime.com/b/yen-japan-coin-currency-other-world-coins-original-macro-photo-photo-blur-58161597.jpg");
+ font-size: 12px;
+  font-style: bold;
+  font-family: verdana;
+
+}
+
+
+.genraldonor{
+background-image: url("https://thumbs.dreamstime.com/z/stack-books-desk-vintage-filter-blur-background-72496720.jpg");
+ font-size: 12px;
+  font-style: bold;
+  font-family: verdana;
+
+}*/
+.form-control{
+  font-size: 15px;
+}

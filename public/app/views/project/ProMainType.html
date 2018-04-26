@@ -1,0 +1,183 @@
+<!--Project Name :AIM for Seva
+Filename : ProMainType.html*
+Purpose /Functionality: A html file to display all the data to the user based on Project Maintenance Type
+Author : Rahul(id:T0002) -->
+
+
+<form ng-app="customValidationApp" ng-controller="customValidation" novalidate>
+   <section class="content-header">
+   </section>
+   </section>
+   <ol class="breadcrumb">
+      <li>
+         <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+      </li>
+      <li>
+         <a ui-sref="home.ProjectMaintenanceType">{{activeUrl[2]}}</a>
+      </li>
+   </ol>
+   <br>
+   <br>
+   <div class="row">
+      <div class="col-sm-10">
+         <div class="box">
+            <div class="box box-primary">
+               <div class="box-header">
+                  <div class="bg-navy-active color-palette">
+                     <br>
+                     <h3 class="box-title">&nbsp;&nbsp;Add</h3>
+                  </div>
+                  <br>
+                  <!-- /.box-header -->
+                  <div class = "form-group" ng-form name ="form">
+                     <div class="box-body no-padding">
+                        <label class="col-md-4 control-label" >Code</label>
+                        <div class="col-md-6  inputGroupContainer">
+                           <div class="input-group">
+                              <span class="input-group-addon">
+                                 <li class="glyphicon glyphicon-flag"></li>
+                              </span>
+                              <input name="maintenance_code" onkeydown="upperCaseF(this)" allow-pattern="^[a-zA-Z0-9]+" placeholder="Maintenance Type Code" 
+                                 class="form-control" 
+                                 type="text"  ng-model="regData.maintenance_code" maxlength="5" required="">
+                           </div>
+                           <span style="color:red;" ng-show="form.maintenance_code.$touched && form.maintenance_code.$invalid" >*The Code is required.</span>
+                           <div style="color:red;" ng-show="regData.maintenance_code.length == 6">*You have reached max input limit</div>
+                        </div>
+                        <br> <br>
+                        <label class="col-md-4 control-label" >Project Category</label>
+                        <div class="col-md-6  inputGroupContainer">
+                           <div class="input-group">
+                              <span class="input-group-addon">
+                                 <li class="glyphicon glyphicon-flag"></li>
+                              </span>
+                              <select ng-options="x.project_category for x in allPMaster" 
+                                 name="regData.project_category_id" 
+                                 class="form-control" ng-model="regData.selitem" ng-change="getselectedval()"required = "" >
+                                 <option value ="">--select--</option>
+                              </select>
+                           </div>
+                           <span style="color:red;" ng-show="form.project_category_id.$touched && form.project_category_id.$invalid" >*The Project Category is required.</span>
+                           <div style="color:red;" ng-show="regData.project_category_id">*Please Select a Option</div>
+                        </div>
+                        <input type="hidden" ng-value="regData.selitem.project_category_id" ng-model="regData.project_category_id" >
+                        <br> 
+                        <br>
+                        <label class="col-md-4 control-label" >Maintenance Type</label>
+                        <div class="col-md-6  inputGroupContainer">
+                           <div class="input-group">
+                              <span class="input-group-addon">
+                                 <li class="glyphicon glyphicon-flag"></li>
+                              </span>
+                              <input name="maintenance_type" placeholder="Maintenance Type" class="form-control"  type="text" 
+                                 ng-model="regData.maintenance_type" maxlength = "20" ng-change="getselectedvalue()" required ="">
+                           </div>
+                           <span style="color:red;" ng-show="form.maintenance_type.$touched && form.maintenance_type.$invalid" >*The Maintenance Type is required.</span>
+                           <div style="color:red;" ng-show="regData.maintenance_type.length == 21">*You have reached max input limit</div>
+                        </div>
+                        <br>
+                        <input type="hidden"  name="roleName" ng-value="roleName"  ng-init='regData.roleName=roleName' 
+                           ng-model="regData.roleName">
+                        <br>
+                        <label class="col-md-4 control-label" >Active</label>
+                        <div class="col-md-6  inputGroupContainer">
+                           <div class="form-group">
+                              <label>
+                              <input type="radio" value="Y" name="active"  ng-model="regData.active" class="flat-red">
+                              Yes
+                              </label>
+                              &nbsp;&nbsp;
+                              <label>
+                              <input type="radio" value="N" name="active" ng-model="regData.active" class="flat-red">
+                              No
+                              </label>
+                           </div>
+                           <div class="col-md-6  inputGroupContainer">
+                              <button type="submit" class="btn btn-block btn-primary" ng-click="setProjectMaintenanceType(regData)">Save</button>
+                           </div>
+                           <div class="col-md-6  inputGroupContainer">
+                              <button type="submit" class="btn btn-block btn-primary" ng-click="reset()">Reset</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- /.row -->
+   </section>
+   <section class="content">
+   <div class="row">
+      <div class="col-sm-10" style="background-color: #d2e9f7">
+         <div class="box box-primary">
+            <div class="box-header">
+               <div class="bg-navy-active color-palette">
+                  <br>
+                  <h3 class="box-title">&nbsp;&nbsp;Project Maintenance Type List</h3>
+               </div>
+            </div>
+         </div>
+         <!-- /.box-header -->
+         <div class="box-body">
+            <table class="table table-striped  table-hover">
+               <thead>
+                  <tr>
+                     <th ng-click="sort('first_name')">Sl. No.
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Code
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Maintenance Type
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Project Category
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Active
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Edit
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('first_name')">Update
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                     <th ng-click="sort('last_name')">Delete
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                     </th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr dir-paginate="user in projectMaintenanceType|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                     <td>{{$index+1}}</td>
+                     <td><i class="glyphicon sort-icon" ng-click="maintenancecode($index)"  >
+                        <input type="text" name="maintenance_code" class="form-control" ng-model="user.maintenance_code" maxlength="5" ng-disabled="!enabledEdit[{{$index}}]"/></i>
+                     </td>
+                     <td><input name="maintenance_type" class="form-control" ng-model="user.maintenance_type"  maxlength="20"
+                        ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                     <td><input name="regData.project_category_id" class="form-control" ng-model="user.project_category" 
+                        disabled=""/></td>
+                     <td><i class="glyphicon sort-icon" ng-click="ActiveCountry($index)"  >
+                        <input type="text" name="active" class="form-control" ng-model="user.active" maxlength="1" ng-disabled="!enabledEdit[{{$index}}]"/></i>
+                     </td>
+                     <td><i class="glyphicon glyphicon-pencil" ng-click="editTemp($index)"></i></td>
+                     <!-- -->
+                     <td><i class="glyphicon glyphicon-saved" ng-click="update(user)"></i></td>
+                     <td><i class="glyphicon glyphicon-remove" ng-click="remove(user.maintenance_id)"></i></td>
+                     <td><input type="hidden"  name="role1" ng-value="roleName"  ng-init='user.role1=roleName' 
+                        ng-model="user.roleName"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <dir-pagination-controls
+               max-size="5"
+               direction-links="true"
+               boundary-links="true" >
+            </dir-pagination-controls>
+         </div>
+      </div>
+   </div>
+</form>

@@ -1,0 +1,238 @@
+<!--Project Name :AIM for Seva
+Filename : NotificationMaster.html*
+Purpose /Functionality: it is a html file which displays all the templates with their sms content, email subject and email content and has the add,edit,delete functionality.  
+Author : Mythreyi(id:T0005)
+Createdon: 27-feb-1018
+change history:V 1.0.0-->
+ <ol class="breadcrumb">
+    <li>
+      <a ui-sref="home.dashboard">{{activeUrl[1]}}</a>
+    <!--   {{activeUrl[1]}} -->
+    </li>
+    <li>
+       <a ui-sref="home.Donation">{{activeUrl[2]}}</a>
+      <!-- {{activeUrl[2]}} -->
+    </li>
+
+</ol>
+
+  
+  <section class="content" >
+    <div class="form-group" ng-form name = "form">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box box-primary">
+            <div class="box-header">
+              <div class="bg-navy-active color-palette">
+                <br>
+                <h3 class="box-title">Add Template</h3>
+              </div> 
+           <br>  
+            <div class="col-md-6">
+              <label class="col-md-4 control-label" >Phone Number</label>
+              <div class="col-md-6  inputGroupContainer">      
+                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                  <input name="templatename" placeholder="Template Name" class="form-control"  type="number" ng-model="regData.template_name" required="" >
+                </div> 
+                <span style="color:red;" ng-show="form.templatename.$touched && form.templatename.$invalid" >*The template name is required.
+                </span>
+                <div style="color:red;" ng-show="regData.template_name.length == 100">*You have reached max input limit</div>
+              </div>
+              <br><br>
+              <label class="col-md-4 control-label" >Project Category</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                  <input name="emailsub" placeholder="Email Subject" class="form-control"  type="text" ng-model="regData.email_sub" organization-name="100" required="">
+                </div>
+                <span style="color:red;" ng-show="form.emailsub.$touched && form.emailsub.$invalid" >*The Email subject is required.
+                </span>
+                <div style="color:red;" ng-show="regData.email_sub.length == 100">*You have reached max input limit</div>
+              </div>
+              <br><br>
+              <label class="col-md-4 control-label" >Campaign Name</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span> 
+                  <input name="emailcontent" placeholder="Email Body" class="form-control"  type="text" ng-model="regData.email_content"  sms-content="200" required="" >
+                </div>
+                <span style="color:red;" ng-show="form.emailcontent.$touched && form.emailcontent.$invalid" >*The email body is required.
+                </span>
+                <div style="color:red;" ng-show="regData.email_content.length == 200">*You have reached max input limit
+                </div>
+              </div>
+              <br><br>
+              <label class="col-md-4 control-label" >SMS Body</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                  <input name="smscontent" placeholder="SMS Body" class="form-control"  type="text" ng-model="regData.sms_content" sms-content="200" required="" >
+                </div>
+                <span style="color:red;" ng-show="form.smscontent.$touched && form.smscontent.$invalid" >*The SMS body is required.
+                </span>
+                <div style="color:red;" ng-show="regData.sms_content.length == 200">*You have reached max input limit</div>
+              </div>
+
+
+              <br><br>
+              <!-- <label class="col-md-4 control-label" >Active</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="form-group">
+                  <label><input type="radio" name="r3" value="Y" ng-model="regData.active">Yes</label>                  
+                  <label><input type="radio" name="r3" value="N" checked="checked" ng-model="regData.active">No</label>
+                </div>
+                <div class="col-md-6  inputGroupContainer">
+                  <button type="submit" ng-disabled="form.$invalid || projectMaintenance.dataLoading" class="btn btn-primary" ng-click="setTemplate(regData)">Save</button>
+                </div>
+                <div class="col-md-6  inputGroupContainer">
+                  <button type="submit" class="btn btn-primary" ng-click="reset()">Reset</button>
+                </div>
+              </div> -->
+            </div> 
+            <div class="col-md-6">
+              <label class="col-md-4 control-label" >Template Name</label>
+              <div class="col-md-6  inputGroupContainer">      
+                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                  <input name="templatename" placeholder="Template Name" class="form-control"  type="text" ng-model="regData.template_name" organization-name="100" required="" >
+                </div> 
+                <span style="color:red;" ng-show="form.templatename.$touched && form.templatename.$invalid" >*The template name is required.
+                </span>
+                <div style="color:red;" ng-show="regData.template_name.length == 100">*You have reached max input limit</div>
+              </div>
+              <br><br>
+              <label class="col-md-4 control-label" >Email Subject</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                  <input name="emailsub" placeholder="Email Subject" class="form-control"  type="text" ng-model="regData.email_sub" organization-name="100" required="">
+                </div>
+                <span style="color:red;" ng-show="form.emailsub.$touched && form.emailsub.$invalid" >*The Email subject is required.
+                </span>
+                <div style="color:red;" ng-show="regData.email_sub.length == 100">*You have reached max input limit</div>
+              </div>
+              <br><br>
+              <label class="col-md-4 control-label" >Email Body</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span> 
+                  <input name="emailcontent" placeholder="Email Body" class="form-control"  type="text" ng-model="regData.email_content"  sms-content="200" required="" >
+                </div>
+                <span style="color:red;" ng-show="form.emailcontent.$touched && form.emailcontent.$invalid" >*The email body is required.
+                </span>
+                <div style="color:red;" ng-show="regData.email_content.length == 200">*You have reached max input limit
+                </div>
+              </div>
+              <br><br>
+              <label class="col-md-4 control-label" >SMS Body</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                  <input name="smscontent" placeholder="SMS Body" class="form-control"  type="text" ng-model="regData.sms_content" sms-content="200" required="" >
+                </div>
+                <span style="color:red;" ng-show="form.smscontent.$touched && form.smscontent.$invalid" >*The SMS body is required.
+                </span>
+                <div style="color:red;" ng-show="regData.sms_content.length == 200">*You have reached max input limit</div>
+              </div>
+              
+
+              <br><br>
+              <!-- <label class="col-md-4 control-label" >Active</label>
+              <div class="col-md-6  inputGroupContainer">
+                <div class="form-group">
+                  <label><input type="radio" name="r3" value="Y" ng-model="regData.active">Yes</label>                  
+                  <label><input type="radio" name="r3" value="N" checked="checked" ng-model="regData.active">No</label>
+                </div>
+                <div class="col-md-6  inputGroupContainer">
+                  <button type="submit" ng-disabled="form.$invalid || projectMaintenance.dataLoading" class="btn btn-primary" ng-click="setTemplate(regData)">Save</button>
+                </div>
+                <div class="col-md-6  inputGroupContainer">
+                  <button type="submit" class="btn btn-primary" ng-click="reset()">Reset</button>
+                </div>
+              </div> -->
+            
+            </div>
+                <div class="col-md-6  inputGroupContainer">
+                  <button type="submit" ng-disabled="form.$invalid || projectMaintenance.dataLoading" class="btn btn-primary" ng-click="setTemplate(regData)">Save</button>
+                </div>
+                <div class="col-md-6  inputGroupContainer">
+                  <button type="submit" class="btn btn-primary" ng-click="reset()">Reset</button>
+                </div>
+       
+              </div> 
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box box-primary">
+            <div class="box-header">
+              <div class="bg-navy-active color-palette">
+                <br>
+                <h3 class="box-title">View Templates</h3>
+              </div>
+              <br>
+              <form class="form-inline" >
+                <div class="form-group">
+                  <div class="col-md-5">
+                  <label >Search</label>
+                  <input type="text" ng-model="search" class="form-control" placeholder="Search"></div>
+                </div>
+              </form>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th ng-click="sort('first_name')">Sl. No.
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('first_name')">Template Name
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('first_name')">Email Subject
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('first_name')">Email Content
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('first_name')">SMS content
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('first_name')">Active
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('first_name')">Edit
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('first_name')">Update
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('last_name')">Delete
+                      <span class="glyphicon sort-icon" ng-show="sortKey=='delete'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr dir-paginate="user in countryMaster|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                    <td>{{$index+1}}</td>
+                    <td><input name="template_name" class="form-control"  ng-model="user.template_name" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                    <td><input name="email_sub" class="form-control"   ng-model="user.email_sub" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                    <td><input name="email_content" class="form-control"   ng-model="user.email_content" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                    <td><input name="sms_content" class="form-control"   ng-model="user.sms_content" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                    <td><input name="active" class="form-control"   ng-model="user.active" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+                    <td ><i class="glyphicon glyphicon-pencil" ng-click="editTemp($index)"></i></td>
+                    <td><i class="glyphicon glyphicon-saved" ng-click="update(user)"></i></td>
+                    <td><i class="glyphicon glyphicon-remove" ng-click="remove(user.template_id)"></i></td>
+                  </tr>
+                </tbody>
+              </table> 
+              <dir-pagination-controls
+                max-size="5"
+                direction-links="true"
+                boundary-links="true" >
+              </dir-pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+  </section>
+</form>
+  

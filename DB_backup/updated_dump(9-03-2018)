@@ -1,0 +1,1575 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	8.0.3-rc-log
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema seva
+--
+
+CREATE DATABASE IF NOT EXISTS seva;
+USE seva;
+
+--
+-- Definition of table `annual_maintenance`
+--
+
+DROP TABLE IF EXISTS `annual_maintenance`;
+CREATE TABLE `annual_maintenance` (
+  `receipt_no` int(11) NOT NULL AUTO_INCREMENT,
+  `donor_id` int(11) NOT NULL,
+  `donation_date` date NOT NULL,
+  `amount` decimal(18,2) NOT NULL,
+  `payment_id` int(11) DEFAULT NULL,
+  `cheque_no` varchar(50) DEFAULT NULL,
+  `cheque_date` date DEFAULT NULL,
+  `bank` varchar(150) DEFAULT NULL,
+  `project_category_id` int(11) DEFAULT NULL,
+  `maintenance_id` int(11) DEFAULT NULL,
+  `sub_type_id` int(11) DEFAULT NULL,
+  `notes` varchar(4000) DEFAULT NULL,
+  `upload_document` blob,
+  `campaign_id` int(11) DEFAULT NULL,
+  `credit_or_debit_card_no` char(16) DEFAULT NULL,
+  `txn_id` char(10) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`receipt_no`),
+  KEY `payment_id` (`payment_id`),
+  KEY `project_category_id` (`project_category_id`),
+  KEY `maintenance_id` (`maintenance_id`),
+  KEY `sub_type_id` (`sub_type_id`),
+  KEY `campaign_id` (`campaign_id`),
+  CONSTRAINT `annual_maintenance_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_master` (`payment_id`),
+  CONSTRAINT `annual_maintenance_ibfk_2` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`),
+  CONSTRAINT `annual_maintenance_ibfk_3` FOREIGN KEY (`maintenance_id`) REFERENCES `maintenance_type` (`maintenance_id`),
+  CONSTRAINT `annual_maintenance_ibfk_4` FOREIGN KEY (`sub_type_id`) REFERENCES `maintenance_sub_type` (`sub_type_id`),
+  CONSTRAINT `annual_maintenance_ibfk_5` FOREIGN KEY (`campaign_id`) REFERENCES `campaign_master` (`campaign_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `annual_maintenance`
+--
+
+/*!40000 ALTER TABLE `annual_maintenance` DISABLE KEYS */;
+/*!40000 ALTER TABLE `annual_maintenance` ENABLE KEYS */;
+
+
+--
+-- Definition of table `building_donor`
+--
+
+DROP TABLE IF EXISTS `building_donor`;
+CREATE TABLE `building_donor` (
+  `receipt_no` int(11) NOT NULL AUTO_INCREMENT,
+  `donor_id` int(11) NOT NULL,
+  `donation_date` date NOT NULL,
+  `amount` decimal(18,2) NOT NULL,
+  `payment_id` int(11) DEFAULT NULL,
+  `cheque_no` varchar(50) DEFAULT NULL,
+  `cheque_date` date DEFAULT NULL,
+  `bank` varchar(150) DEFAULT NULL,
+  `project_category_id` int(11) DEFAULT NULL,
+  `maintenance_id` int(11) DEFAULT NULL,
+  `sub_type_id` int(11) DEFAULT NULL,
+  `notes` varchar(4000) DEFAULT NULL,
+  `campaign_id` int(11) DEFAULT NULL,
+  `full_building` varchar(100) DEFAULT NULL,
+  `ground_floor` varchar(100) DEFAULT NULL,
+  `first_floor` varchar(100) DEFAULT NULL,
+  `second_floor` varchar(100) DEFAULT NULL,
+  `third_floor` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `size` varchar(50) DEFAULT NULL,
+  `year_of_construction` varchar(30) DEFAULT NULL,
+  `year_of_completion` varchar(30) DEFAULT NULL,
+  `upload_photo` blob,
+  `credit_or_debit_card_no` char(16) DEFAULT NULL,
+  `txn_id` char(10) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`receipt_no`),
+  KEY `payment_id` (`payment_id`),
+  KEY `project_category_id` (`project_category_id`),
+  KEY `maintenance_id` (`maintenance_id`),
+  KEY `sub_type_id` (`sub_type_id`),
+  KEY `campaign_id` (`campaign_id`),
+  CONSTRAINT `building_donor_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_master` (`payment_id`),
+  CONSTRAINT `building_donor_ibfk_2` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`),
+  CONSTRAINT `building_donor_ibfk_3` FOREIGN KEY (`maintenance_id`) REFERENCES `maintenance_type` (`maintenance_id`),
+  CONSTRAINT `building_donor_ibfk_4` FOREIGN KEY (`sub_type_id`) REFERENCES `maintenance_sub_type` (`sub_type_id`),
+  CONSTRAINT `building_donor_ibfk_5` FOREIGN KEY (`campaign_id`) REFERENCES `campaign_master` (`campaign_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `building_donor`
+--
+
+/*!40000 ALTER TABLE `building_donor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `building_donor` ENABLE KEYS */;
+
+
+--
+-- Definition of table `campaign_master`
+--
+
+DROP TABLE IF EXISTS `campaign_master`;
+CREATE TABLE `campaign_master` (
+  `campaign_id` int(11) NOT NULL AUTO_INCREMENT,
+  `campaign_code` varchar(20) NOT NULL,
+  `country_code` int(11) NOT NULL,
+  `state_code` int(11) NOT NULL,
+  `campaign_name` varchar(100) NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `notes` varchar(4000) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`campaign_id`),
+  UNIQUE KEY `campaign_code` (`campaign_code`),
+  KEY `country_code` (`country_code`),
+  KEY `state_code` (`state_code`),
+  CONSTRAINT `campaign_master_ibfk_1` FOREIGN KEY (`country_code`) REFERENCES `country_master` (`country_code`),
+  CONSTRAINT `campaign_master_ibfk_2` FOREIGN KEY (`state_code`) REFERENCES `state_master` (`state_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `campaign_master`
+--
+
+/*!40000 ALTER TABLE `campaign_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `campaign_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `country_master`
+--
+
+DROP TABLE IF EXISTS `country_master`;
+CREATE TABLE `country_master` (
+  `country_code` int(11) NOT NULL AUTO_INCREMENT,
+  `country` varchar(50) NOT NULL,
+  `country_short_name` varchar(10) NOT NULL,
+  `created_by` varchar(30) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(30) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL DEFAULT 'Y',
+  PRIMARY KEY (`country_code`),
+  UNIQUE KEY `country` (`country`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `country_master`
+--
+
+/*!40000 ALTER TABLE `country_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `country_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `country_master_lookup`
+--
+
+DROP TABLE IF EXISTS `country_master_lookup`;
+CREATE TABLE `country_master_lookup` (
+  `country_code` int(11) NOT NULL AUTO_INCREMENT,
+  `country` varchar(50) NOT NULL,
+  `country_short_name` varchar(10) NOT NULL,
+  `created_by` varchar(30) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(30) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL DEFAULT 'Y',
+  PRIMARY KEY (`country_code`),
+  UNIQUE KEY `country` (`country`)
+) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `country_master_lookup`
+--
+
+/*!40000 ALTER TABLE `country_master_lookup` DISABLE KEYS */;
+INSERT INTO `country_master_lookup` (`country_code`,`country`,`country_short_name`,`created_by`,`created_on`,`updated_by`,`updated_on`,`active`) VALUES 
+ (1,'Afghanistan','AF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (2,'Aland Islands','AX','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (3,'Albania','AL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (4,'Algeria','DZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (5,'American Samoa','AS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (6,'Andorra','AD','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (7,'Angola','AO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (8,'Anguilla','AI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (9,'Antarctica','AQ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (10,'Antigua and Barbuda','AG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (11,'Argentina','AR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (12,'Armenia','AM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (13,'Aruba','AW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (14,'Australia','AU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (15,'Austria','AT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (16,'Azerbaijan','AZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (17,'Bahamas','BS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (18,'Bahrain','BH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (19,'Bangladesh','BD','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (20,'Barbados','BB','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (21,'Belarus','BY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (22,'Belgium','BE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (23,'Belize','BZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (24,'Benin','BJ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (25,'Bermuda','BM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (26,'Bhutan','BT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (27,'Bolivia','BO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (28,'Bosnia and Herzegovina','BA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (29,'Botswana','BW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (30,'Bouvet Island','BV','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (31,'Brazil','BR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (32,'British Virgin Islands','VG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (33,'British Indian Ocean Territory','IO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (34,'Brunei Darussalam','BN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (35,'Bulgaria','BG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (36,'Burkina Faso','BF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (37,'Burundi','BI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (38,'Cambodia','KH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (39,'Cameroon','CM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (40,'Canada','CA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (41,'Cape Verde','CV','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (42,'Cayman Islands','KY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (43,'Central African Republic','CF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (44,'Chad','TD','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (45,'Chile','CL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (46,'China','CN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (47,'Hong Kong, SAR China','HK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (48,'Macao, SAR China','MO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (49,'Christmas Island','CX','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (50,'Cocos (Keeling) Islands','CC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (51,'Colombia','CO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (52,'Comoros','KM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (53,'Congo (Brazzaville)','CG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (54,'Congo, (Kinshasa)','CD','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (55,'Cook Islands','CK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (56,'Costa Rica','CR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (57,'Côte dIvoire','CI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (58,'Croatia','HR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (59,'Cuba','CU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (60,'Cyprus','CY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (61,'Czech Republic','CZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (62,'Denmark','DK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (63,'Djibouti','DJ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (64,'Dominica','DM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (65,'Dominican Republic','DO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (66,'Ecuador','EC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (67,'Egypt','EG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (68,'El Salvador','SV','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (69,'Equatorial Guinea','GQ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (70,'Eritrea','ER','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (71,'Estonia','EE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (72,'Ethiopia','ET','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (73,'Falkland Islands (Malvinas)','FK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (74,'Faroe Islands','FO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (75,'Fiji','FJ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (76,'Finland','FI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (77,'France','FR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (78,'French Guiana','GF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (79,'French Polynesia','PF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (80,'French Southern Territories','TF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (81,'Gabon','GA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (82,'Gambia','GM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (83,'Georgia','GE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (84,'Germany','DE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (85,'Ghana','GH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (86,'Gibraltar','GI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (87,'Greece','GR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (88,'Greenland','GL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (89,'Grenada','GD','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (90,'Guadeloupe','GP','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (91,'Guam','GU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (92,'Guatemala','GT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (93,'Guernsey','GG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (94,'Guinea','GN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (95,'Guinea-Bissau','GW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (96,'Guyana','GY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (97,'Haiti','HT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (98,'Heard and Mcdonald Islands','HM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (99,'Holy See (Vatican City State)','VA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (100,'Honduras','HN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (101,'Hungary','HU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (102,'Iceland','IS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (103,'India','IN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (104,'Indonesia','ID','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (105,'Iran, Islamic Republic of','IR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (106,'Iraq','IQ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (107,'Ireland','IE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (108,'Isle of Man','IM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (109,'Israel','IL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (110,'Italy','IT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (111,'Jamaica','JM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (112,'Japan','JP','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (113,'Jersey','JE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (114,'Jordan','JO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (115,'Kazakhstan','KZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (116,'Kenya','KE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (117,'Kiribati','KI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (118,'Korea (North)','KP','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (119,'Korea (South)','KR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (120,'Kuwait','KW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (121,'Kyrgyzstan','KG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (122,'Lao PDR','LA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (123,'Latvia','LV','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (124,'Lebanon','LB','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (125,'Lesotho','LS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (126,'Liberia','LR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (127,'Libya','LY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (128,'Liechtenstein','LI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (129,'Lithuania','LT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (130,'Luxembourg','LU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (131,'Macedonia, Republic of','MK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (132,'Madagascar','MG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (133,'Malawi','MW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (134,'Malaysia','MY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (135,'Maldives','MV','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (136,'Mali','ML','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (137,'Malta','MT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (138,'Marshall Islands','MH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (139,'Martinique','MQ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (140,'Mauritania','MR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (141,'Mauritius','MU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (142,'Mayotte','YT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (143,'Mexico','MX','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (144,'Micronesia, Federated States of','FM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (145,'Moldova','MD','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (146,'Monaco','MC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (147,'Mongolia','MN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (148,'Montenegro','ME','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (149,'Montserrat','MS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (150,'Morocco','MA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (151,'Mozambique','MZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (152,'Myanmar','MM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (153,'Namibia','NA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (154,'Nauru','NR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (155,'Nepal','NP','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (156,'Netherlands','NL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (157,'Netherlands Antilles','AN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (158,'New Caledonia','NC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (159,'New Zealand','NZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (160,'Nicaragua','NI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (161,'Niger','NE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (162,'Nigeria','NG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (163,'Niue','NU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (164,'Norfolk Island','NF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (165,'Northern Mariana Islands','MP','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (166,'Norway','NO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (167,'Oman','OM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (168,'Pakistan','PK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (169,'Palau','PW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (170,'Palestinian Territory','PS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (171,'Panama','PA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (172,'Papua New Guinea','PG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (173,'Paraguay','PY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (174,'Peru','PE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (175,'Philippines','PH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (176,'Pitcairn','PN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (177,'Poland','PL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (178,'Portugal','PT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (179,'Puerto Rico','PR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (180,'Qatar','QA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (181,'Réunion','RE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (182,'Romania','RO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (183,'Russian Federation','RU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (184,'Rwanda','RW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (185,'Saint-Barthélemy','BL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (186,'Saint Helena','SH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (187,'Saint Kitts and Nevis','KN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (188,'Saint Lucia','LC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (189,'Saint-Martin (French part)','MF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (190,'Saint Pierre and Miquelon','PM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (191,'Saint Vincent and Grenadines','VC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (192,'Samoa','WS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (193,'San Marino','SM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (194,'Sao Tome and Principe','ST','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (195,'Saudi Arabia','SA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (196,'Senegal','SN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (197,'Serbia','RS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (198,'Seychelles','SC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (199,'Sierra Leone','SL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (200,'Singapore','SG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (201,'Slovakia','SK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (202,'Slovenia','SI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (203,'Solomon Islands','SB','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (204,'Somalia','SO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (205,'South Africa','ZA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (206,'South Georgia and the South Sandwich Islands','GS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (207,'South Sudan','SS','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (208,'Spain','ES','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (209,'Sri Lanka','LK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (210,'Sudan','SD','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (211,'Suriname','SR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (212,'Svalbard and Jan Mayen Islands','SJ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (213,'Swaziland','SZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (214,'Sweden','SE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (215,'Switzerland','CH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (216,'Syrian Arab Republic (Syria)','SY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (217,'Taiwan, Republic of China','TW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (218,'Tajikistan','TJ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (219,'Tanzania, United Republic of','TZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (220,'Thailand','TH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (221,'Timor-Leste','TL','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (222,'Togo','TG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (223,'Tokelau','TK','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (224,'Tonga','TO','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (225,'Trinidad and Tobago','TT','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (226,'Tunisia','TN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (227,'Turkey','TR','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (228,'Turkmenistan','TM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (229,'Turks and Caicos Islands','TC','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (230,'Tuvalu','TV','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (231,'Uganda','UG','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (232,'Ukraine','UA','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (233,'United Arab Emirates','AE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (234,'United Kingdom','GB','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (235,'United States of America','US','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (236,'US Minor Outlying Islands','UM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (237,'Uruguay','UY','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (238,'Uzbekistan','UZ','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (239,'Vanuatu','VU','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (240,'Venezuela (Bolivarian Republic)','VE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (241,'Viet Nam','VN','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (242,'Virgin Islands, US','VI','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (243,'Wallis and Futuna Islands','WF','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (244,'Western Sahara','EH','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (245,'Yemen','YE','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (246,'Zambia','ZM','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y'),
+ (247,'Zimbabwe','ZW','ADMIN','2018-03-06 18:33:03',NULL,NULL,'Y');
+/*!40000 ALTER TABLE `country_master_lookup` ENABLE KEYS */;
+
+
+--
+-- Definition of table `donor`
+--
+
+DROP TABLE IF EXISTS `donor`;
+CREATE TABLE `donor` (
+  `donor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `donor_code` char(6) NOT NULL,
+  `country_code` int(11) NOT NULL,
+  `state_code` int(11) NOT NULL,
+  `donor_type` smallint(6) DEFAULT NULL,
+  `organization_name` varchar(100) DEFAULT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `mobile_no` varchar(15) NOT NULL,
+  `landline_no` varchar(15) DEFAULT NULL,
+  `fax_no` varchar(15) DEFAULT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `website` varchar(50) DEFAULT NULL,
+  `address1` varchar(80) DEFAULT NULL,
+  `address2` varchar(80) DEFAULT NULL,
+  `address3` varchar(80) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`donor_id`),
+  UNIQUE KEY `donor_code` (`donor_code`),
+  KEY `country_code` (`country_code`),
+  KEY `state_code` (`state_code`),
+  CONSTRAINT `donor_ibfk_1` FOREIGN KEY (`country_code`) REFERENCES `country_master` (`country_code`),
+  CONSTRAINT `donor_ibfk_2` FOREIGN KEY (`state_code`) REFERENCES `state_master` (`state_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `donor`
+--
+
+/*!40000 ALTER TABLE `donor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `donor` ENABLE KEYS */;
+
+
+--
+-- Definition of table `facility_management`
+--
+
+DROP TABLE IF EXISTS `facility_management`;
+CREATE TABLE `facility_management` (
+  `receipt_no` int(11) NOT NULL AUTO_INCREMENT,
+  `donor_id` int(11) NOT NULL,
+  `donation_date` date NOT NULL,
+  `amount` decimal(18,2) NOT NULL,
+  `payment_id` int(11) DEFAULT NULL,
+  `cheque_no` varchar(50) DEFAULT NULL,
+  `cheque_date` date DEFAULT NULL,
+  `bank` varchar(150) DEFAULT NULL,
+  `project_category_id` int(11) DEFAULT NULL,
+  `maintenance_id` int(11) DEFAULT NULL,
+  `sub_type_id` int(11) DEFAULT NULL,
+  `notes` varchar(4000) DEFAULT NULL,
+  `campaign_id` int(11) DEFAULT NULL,
+  `credit_or_debit_card_no` char(16) DEFAULT NULL,
+  `txn_id` char(10) DEFAULT NULL,
+  `created_on` datetime NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`receipt_no`),
+  KEY `payment_id` (`payment_id`),
+  KEY `project_category_id` (`project_category_id`),
+  KEY `maintenance_id` (`maintenance_id`),
+  KEY `sub_type_id` (`sub_type_id`),
+  KEY `campaign_id` (`campaign_id`),
+  CONSTRAINT `facility_management_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_master` (`payment_id`),
+  CONSTRAINT `facility_management_ibfk_2` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`),
+  CONSTRAINT `facility_management_ibfk_3` FOREIGN KEY (`maintenance_id`) REFERENCES `maintenance_type` (`maintenance_id`),
+  CONSTRAINT `facility_management_ibfk_4` FOREIGN KEY (`sub_type_id`) REFERENCES `maintenance_sub_type` (`sub_type_id`),
+  CONSTRAINT `facility_management_ibfk_5` FOREIGN KEY (`campaign_id`) REFERENCES `campaign_master` (`campaign_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `facility_management`
+--
+
+/*!40000 ALTER TABLE `facility_management` DISABLE KEYS */;
+/*!40000 ALTER TABLE `facility_management` ENABLE KEYS */;
+
+
+--
+-- Definition of table `general_donaton`
+--
+
+DROP TABLE IF EXISTS `general_donaton`;
+CREATE TABLE `general_donaton` (
+  `receipt_no` int(11) NOT NULL AUTO_INCREMENT,
+  `donor_id` int(11) NOT NULL,
+  `donation_date` date NOT NULL,
+  `amount` decimal(18,2) NOT NULL,
+  `payment_id` int(11) DEFAULT NULL,
+  `cheque_no` varchar(50) DEFAULT NULL,
+  `cheque_date` date DEFAULT NULL,
+  `bank` varchar(150) DEFAULT NULL,
+  `project_category_id` int(11) DEFAULT NULL,
+  `maintenance_id` int(11) DEFAULT NULL,
+  `sub_type_id` int(11) DEFAULT NULL,
+  `notes` varchar(4000) DEFAULT NULL,
+  `campaign_id` int(11) DEFAULT NULL,
+  `credit_or_debit_card_no` char(16) DEFAULT NULL,
+  `txn_id` char(10) DEFAULT NULL,
+  `created_on` datetime NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`receipt_no`),
+  KEY `payment_id` (`payment_id`),
+  KEY `project_category_id` (`project_category_id`),
+  KEY `maintenance_id` (`maintenance_id`),
+  KEY `sub_type_id` (`sub_type_id`),
+  KEY `campaign_id` (`campaign_id`),
+  CONSTRAINT `general_donaton_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_master` (`payment_id`),
+  CONSTRAINT `general_donaton_ibfk_2` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`),
+  CONSTRAINT `general_donaton_ibfk_3` FOREIGN KEY (`maintenance_id`) REFERENCES `maintenance_type` (`maintenance_id`),
+  CONSTRAINT `general_donaton_ibfk_4` FOREIGN KEY (`sub_type_id`) REFERENCES `maintenance_sub_type` (`sub_type_id`),
+  CONSTRAINT `general_donaton_ibfk_5` FOREIGN KEY (`campaign_id`) REFERENCES `campaign_master` (`campaign_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `general_donaton`
+--
+
+/*!40000 ALTER TABLE `general_donaton` DISABLE KEYS */;
+/*!40000 ALTER TABLE `general_donaton` ENABLE KEYS */;
+
+
+--
+-- Definition of table `land_donor`
+--
+
+DROP TABLE IF EXISTS `land_donor`;
+CREATE TABLE `land_donor` (
+  `receipt_no` int(11) NOT NULL AUTO_INCREMENT,
+  `donor_id` int(11) NOT NULL,
+  `donation_date` date NOT NULL,
+  `amount` decimal(18,2) NOT NULL,
+  `payment_id` int(11) NOT NULL,
+  `cheque_no` varchar(50) DEFAULT NULL,
+  `cheque_date` date DEFAULT NULL,
+  `bank` varchar(150) DEFAULT NULL,
+  `project_category_id` int(11) DEFAULT NULL,
+  `maintenance_id` int(11) DEFAULT NULL,
+  `sub_type_id` int(11) DEFAULT NULL,
+  `notes` varchar(4000) DEFAULT NULL,
+  `campaign_id` int(11) DEFAULT NULL,
+  `donated` varchar(50) DEFAULT NULL,
+  `leased` varchar(50) DEFAULT NULL,
+  `build_up_area` varchar(50) DEFAULT NULL,
+  `vacant_area` varchar(50) DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
+  `year_of_donation` varchar(30) DEFAULT NULL,
+  `leased_period` varchar(50) DEFAULT NULL,
+  `credit_or_debit_card_no` char(16) DEFAULT NULL,
+  `txn_id` char(10) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`receipt_no`),
+  KEY `payment_id` (`payment_id`),
+  KEY `project_category_id` (`project_category_id`),
+  KEY `maintenance_id` (`maintenance_id`),
+  KEY `sub_type_id` (`sub_type_id`),
+  KEY `campaign_id` (`campaign_id`),
+  CONSTRAINT `land_donor_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_master` (`payment_id`),
+  CONSTRAINT `land_donor_ibfk_2` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`),
+  CONSTRAINT `land_donor_ibfk_3` FOREIGN KEY (`maintenance_id`) REFERENCES `maintenance_type` (`maintenance_id`),
+  CONSTRAINT `land_donor_ibfk_4` FOREIGN KEY (`sub_type_id`) REFERENCES `maintenance_sub_type` (`sub_type_id`),
+  CONSTRAINT `land_donor_ibfk_5` FOREIGN KEY (`campaign_id`) REFERENCES `campaign_master` (`campaign_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `land_donor`
+--
+
+/*!40000 ALTER TABLE `land_donor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `land_donor` ENABLE KEYS */;
+
+
+--
+-- Definition of table `login_history`
+--
+
+DROP TABLE IF EXISTS `login_history`;
+CREATE TABLE `login_history` (
+  `login_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_code` int(11) NOT NULL,
+  `login_time` datetime NOT NULL,
+  `logout_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`login_id`),
+  KEY `fk_login_history_user_master1_idx` (`user_code`) USING BTREE,
+  CONSTRAINT `fk_login_history_user_master1` FOREIGN KEY (`user_code`) REFERENCES `user_master` (`user_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `login_history`
+--
+
+/*!40000 ALTER TABLE `login_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `login_history` ENABLE KEYS */;
+
+
+--
+-- Definition of table `maintenance_sub_type`
+--
+
+DROP TABLE IF EXISTS `maintenance_sub_type`;
+CREATE TABLE `maintenance_sub_type` (
+  `sub_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_category_id` int(11) NOT NULL,
+  `maintenance_id` int(11) NOT NULL,
+  `sub_type` varchar(50) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`sub_type_id`),
+  KEY `project_category_id` (`project_category_id`),
+  KEY `maintenance_id` (`maintenance_id`),
+  CONSTRAINT `maintenance_sub_type_ibfk_1` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`),
+  CONSTRAINT `maintenance_sub_type_ibfk_2` FOREIGN KEY (`maintenance_id`) REFERENCES `maintenance_type` (`maintenance_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `maintenance_sub_type`
+--
+
+/*!40000 ALTER TABLE `maintenance_sub_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `maintenance_sub_type` ENABLE KEYS */;
+
+
+--
+-- Definition of table `maintenance_type`
+--
+
+DROP TABLE IF EXISTS `maintenance_type`;
+CREATE TABLE `maintenance_type` (
+  `maintenance_id` int(11) NOT NULL AUTO_INCREMENT,
+  `maintenance_code` char(6) NOT NULL,
+  `project_category_id` int(11) NOT NULL,
+  `maintenance_type` varchar(50) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`maintenance_id`),
+  UNIQUE KEY `maintenance_code` (`maintenance_code`),
+  KEY `project_category_id` (`project_category_id`),
+  CONSTRAINT `maintenance_type_ibfk_1` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `maintenance_type`
+--
+
+/*!40000 ALTER TABLE `maintenance_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `maintenance_type` ENABLE KEYS */;
+
+
+--
+-- Definition of table `notification_master`
+--
+
+DROP TABLE IF EXISTS `notification_master`;
+CREATE TABLE `notification_master` (
+  `template_id` int(11) NOT NULL AUTO_INCREMENT,
+  `template_name` varchar(100) DEFAULT NULL,
+  `email_sub` varchar(100) DEFAULT NULL,
+  `email_content` varchar(200) DEFAULT NULL,
+  `sms_content` varchar(200) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`template_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `notification_master`
+--
+
+/*!40000 ALTER TABLE `notification_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notification_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `payment_master`
+--
+
+DROP TABLE IF EXISTS `payment_master`;
+CREATE TABLE `payment_master` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `payment_code` char(5) NOT NULL,
+  `payment_mode` varchar(50) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`payment_id`),
+  UNIQUE KEY `payment_code` (`payment_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment_master`
+--
+
+/*!40000 ALTER TABLE `payment_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `project`
+--
+
+DROP TABLE IF EXISTS `project`;
+CREATE TABLE `project` (
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_code` char(6) NOT NULL,
+  `project_name` varchar(100) NOT NULL,
+  `country_code` int(11) NOT NULL,
+  `state_code` int(11) NOT NULL,
+  `address1` varchar(80) DEFAULT NULL,
+  `address2` varchar(80) DEFAULT NULL,
+  `address3` varchar(80) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `postal_code` char(10) DEFAULT NULL,
+  `report_subm_period` varchar(30) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`project_id`),
+  UNIQUE KEY `project_code` (`project_code`),
+  KEY `country_code` (`country_code`),
+  KEY `state_code` (`state_code`),
+  CONSTRAINT `project_ibfk_1` FOREIGN KEY (`country_code`) REFERENCES `country_master` (`country_code`),
+  CONSTRAINT `project_ibfk_2` FOREIGN KEY (`state_code`) REFERENCES `state_master` (`state_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `project`
+--
+
+/*!40000 ALTER TABLE `project` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project` ENABLE KEYS */;
+
+
+--
+-- Definition of table `project_category`
+--
+
+DROP TABLE IF EXISTS `project_category`;
+CREATE TABLE `project_category` (
+  `project_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_code` char(6) NOT NULL,
+  `project_category` varchar(50) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`project_category_id`),
+  UNIQUE KEY `project_code` (`project_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `project_category`
+--
+
+/*!40000 ALTER TABLE `project_category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_category` ENABLE KEYS */;
+
+
+--
+-- Definition of table `project_dtl`
+--
+
+DROP TABLE IF EXISTS `project_dtl`;
+CREATE TABLE `project_dtl` (
+  `project_dtl_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
+  `project_category_id` int(11) NOT NULL,
+  `report_subm_comments` varchar(100) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`project_dtl_id`),
+  KEY `project_id` (`project_id`),
+  KEY `project_category_id` (`project_category_id`),
+  CONSTRAINT `project_dtl_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`),
+  CONSTRAINT `project_dtl_ibfk_2` FOREIGN KEY (`project_category_id`) REFERENCES `project_category` (`project_category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `project_dtl`
+--
+
+/*!40000 ALTER TABLE `project_dtl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_dtl` ENABLE KEYS */;
+
+
+--
+-- Definition of table `role_master`
+--
+
+DROP TABLE IF EXISTS `role_master`;
+CREATE TABLE `role_master` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(50) NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role_master`
+--
+
+/*!40000 ALTER TABLE `role_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `role_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `role_screen_mapping_master`
+--
+
+DROP TABLE IF EXISTS `role_screen_mapping_master`;
+CREATE TABLE `role_screen_mapping_master` (
+  `screen_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
+  `user_code` int(11) NOT NULL,
+  `screen_name` varchar(50) NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`screen_id`),
+  KEY `role_id` (`role_id`),
+  KEY `user_code` (`user_code`),
+  CONSTRAINT `role_screen_mapping_master_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role_master` (`role_id`),
+  CONSTRAINT `role_screen_mapping_master_ibfk_2` FOREIGN KEY (`user_code`) REFERENCES `user_master` (`user_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role_screen_mapping_master`
+--
+
+/*!40000 ALTER TABLE `role_screen_mapping_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `role_screen_mapping_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `role_user_mapping_master`
+--
+
+DROP TABLE IF EXISTS `role_user_mapping_master`;
+CREATE TABLE `role_user_mapping_master` (
+  `role_mapping_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
+  `user_code` int(11) NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`role_mapping_id`),
+  KEY `role_id` (`role_id`),
+  KEY `user_code` (`user_code`),
+  CONSTRAINT `role_user_mapping_master_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role_master` (`role_id`),
+  CONSTRAINT `role_user_mapping_master_ibfk_2` FOREIGN KEY (`user_code`) REFERENCES `user_master` (`user_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role_user_mapping_master`
+--
+
+/*!40000 ALTER TABLE `role_user_mapping_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `role_user_mapping_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `state_master`
+--
+
+DROP TABLE IF EXISTS `state_master`;
+CREATE TABLE `state_master` (
+  `state_code` int(11) NOT NULL AUTO_INCREMENT,
+  `country_code` int(11) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `state_short_name` varchar(10) NOT NULL,
+  `created_by` varchar(30) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(30) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`state_code`),
+  UNIQUE KEY `state` (`state`),
+  KEY `country_code` (`country_code`),
+  CONSTRAINT `state_master_ibfk_1` FOREIGN KEY (`country_code`) REFERENCES `country_master` (`country_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `state_master`
+--
+
+/*!40000 ALTER TABLE `state_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `state_master` ENABLE KEYS */;
+
+
+--
+-- Definition of table `state_master_lookup`
+--
+
+DROP TABLE IF EXISTS `state_master_lookup`;
+CREATE TABLE `state_master_lookup` (
+  `state_code` int(11) NOT NULL AUTO_INCREMENT,
+  `country_code` int(11) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `state_short_name` varchar(10) NOT NULL,
+  `created_by` varchar(30) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(30) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) NOT NULL,
+  PRIMARY KEY (`state_code`),
+  KEY `country_code` (`country_code`),
+  CONSTRAINT `FK_country_lookup_code` FOREIGN KEY (`country_code`) REFERENCES `country_master_lookup` (`country_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=275 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `state_master_lookup`
+--
+
+/*!40000 ALTER TABLE `state_master_lookup` DISABLE KEYS */;
+INSERT INTO `state_master_lookup` (`state_code`,`country_code`,`state`,`state_short_name`,`created_by`,`created_on`,`updated_by`,`updated_on`,`active`) VALUES 
+ (1,103,'Andaman and Nicobar Islands','AN','ADMIN','2018-03-08 15:25:17',NULL,NULL,'Y'),
+ (2,103,'Andhra Pradesh','AP','ADMIN','2018-03-08 15:25:17',NULL,NULL,'Y'),
+ (3,103,'Arunachal Pradesh','AR','ADMIN','2018-03-08 15:25:17',NULL,NULL,'Y'),
+ (4,103,'Assam','AS','ADMIN','2018-03-08 15:25:17',NULL,NULL,'Y'),
+ (5,103,'Bihar','BR','ADMIN','2018-03-08 15:25:17',NULL,NULL,'Y'),
+ (6,103,'Chandigarh','CH','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (7,103,'Chhattisgarh','CT','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (8,103,'Dadra and Nagar Haveli','DN','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (9,103,'Daman and Diu','DD','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (10,103,'Delhi','DL','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (11,103,'Goa','GA','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (12,103,'Gujarat','GJ','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (13,103,'Haryana','HR','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (14,103,'Himachal Pradesh','HP','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (15,103,'Jammu and Kashmir','JK','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (16,103,'Jharkhand','JH','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (17,103,'Karnataka','KA','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (18,103,'Kerala','KL','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (19,103,'Lakshadweep','LD','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (20,103,'Madhya Pradesh','MP','ADMIN','2018-03-08 15:25:18',NULL,NULL,'Y'),
+ (21,103,'Maharashtra','MH','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (22,103,'Manipur','MN','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (23,103,'Meghalaya','ML','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (24,103,'Mizoram','MZ','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (25,103,'Nagaland','NL','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (26,103,'Odisha, Orissa','OR','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (27,103,'Puducherry','PY','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (28,103,'Punjab','PB','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (29,103,'Rajasthan','RJ','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (30,103,'Sikkim','SK','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (31,103,'Tamil Nadu','TN','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (32,103,'Telangana','TG','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (33,103,'Tripura','TR','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (34,103,'Uttar Pradesh','UP','ADMIN','2018-03-08 15:25:19',NULL,NULL,'Y'),
+ (35,103,'Uttarakhand,Uttaranchal','UT','ADMIN','2018-03-08 15:25:20',NULL,NULL,'Y'),
+ (36,103,'West Bengal','WB','ADMIN','2018-03-08 15:25:20',NULL,NULL,'Y'),
+ (37,168,'Azad Jammu and Kashmir','AJK','ADMIN','2018-03-08 15:25:28',NULL,NULL,'Y'),
+ (38,168,'Balochistan','BA','ADMIN','2018-03-08 15:25:28',NULL,NULL,'Y'),
+ (39,168,'Federally Administered Tribal Areas','FAT','ADMIN','2018-03-08 15:25:28',NULL,NULL,'Y'),
+ (40,168,'Gilgit–Baltistan','GB','ADMIN','2018-03-08 15:25:28',NULL,NULL,'Y'),
+ (41,168,'Islamabad Capital Territory','ICT','ADMIN','2018-03-08 15:25:28',NULL,NULL,'Y'),
+ (42,168,'Khyber Pakhtunkhwa','KP','ADMIN','2018-03-08 15:25:28',NULL,NULL,'Y'),
+ (43,168,'Punjab','PJ','ADMIN','2018-03-08 15:25:29',NULL,NULL,'Y'),
+ (44,168,'Sindh','SD','ADMIN','2018-03-08 15:25:29',NULL,NULL,'Y'),
+ (45,14,'Australian Capital Territory','ACT','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (46,14,'New South Wales','NSW','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (47,14,'Northern Territory','NT','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (48,14,'Queensland','QLD','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (49,14,'South Australia','SA','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (50,14,'Tasmania','TAS','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (51,14,'Victoria','VIC','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (52,14,'Western Australia','WA','ADMIN','2018-03-08 15:30:21',NULL,NULL,'Y'),
+ (53,31,'Acre','AC','ADMIN','2018-03-08 15:34:08',NULL,NULL,'Y'),
+ (54,31,'Alagoas','AL','ADMIN','2018-03-08 15:34:08',NULL,NULL,'Y'),
+ (55,31,'Amapá','AP','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (56,31,'Amazonas','AM','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (57,31,'Bahia','BA','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (58,31,'Ceará','CE','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (59,31,'Distrito Federal','DF','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (60,31,'Espírito Santo','ES','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (61,31,'Goias','GO','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (62,31,'Maranhao','MA','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (63,31,'Mato Grosso','MT','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (64,31,'Mato Grosso do Sul','MS','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (65,31,'Minas Gerais','MG','ADMIN','2018-03-08 15:34:09',NULL,NULL,'Y'),
+ (66,31,'Pará','PA','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (67,31,'Paraíba','PB','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (68,31,'Paraná','PR','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (69,31,'Pernambuco','PE','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (70,31,'Piauí','PI','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (71,31,'Rio de Janeiro','RJ','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (72,31,'Rio Grande do Norte','RN','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (73,31,'Rio Grande do Sul','RS','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (74,31,'Rondônia','RO','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (75,31,'Roraima','RR','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (76,31,'Santa Catarina','SC','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (77,31,'Sao Paulo','SP','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (78,31,'Sergipe','SE','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (79,31,'Tocantins','TO','ADMIN','2018-03-08 15:34:10',NULL,NULL,'Y'),
+ (80,40,'Alberta','AB','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (81,40,'British Columbia','BC','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (82,40,'Manitoba','MB','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (83,40,'New Brunswick','NB','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (84,40,'Newfoundland and Labrador','NL','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (85,40,'Northwest Territories','NT','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (86,40,'Nova Scotia','NS','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (87,40,'Nunavut','NU','ADMIN','2018-03-08 15:36:03',NULL,NULL,'Y'),
+ (88,40,'Ontario','ON','ADMIN','2018-03-08 15:36:04',NULL,NULL,'Y'),
+ (89,40,'Prince Edward Island','PE','ADMIN','2018-03-08 15:36:04',NULL,NULL,'Y'),
+ (90,40,'Quebec','QC','ADMIN','2018-03-08 15:36:04',NULL,NULL,'Y'),
+ (91,40,'Saskatchewan','SK','ADMIN','2018-03-08 15:36:04',NULL,NULL,'Y'),
+ (92,40,'Yukon','YT','ADMIN','2018-03-08 15:36:04',NULL,NULL,'Y'),
+ (93,46,'Anhui','ANH','ADMIN','2018-03-08 15:38:16',NULL,NULL,'Y'),
+ (94,46,'Beijing','BEI','ADMIN','2018-03-08 15:38:16',NULL,NULL,'Y'),
+ (95,46,'Chongqing','CHO','ADMIN','2018-03-08 15:38:16',NULL,NULL,'Y'),
+ (96,46,'Fujian','FUJ','ADMIN','2018-03-08 15:38:16',NULL,NULL,'Y'),
+ (97,46,'Gansu','GAN','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (98,46,'Guangdong','GDG','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (99,46,'Guangxi','GXI','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (100,46,'Guizhou','GUI','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (101,46,'Hainan','HAI','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (102,46,'Hebei','HEB','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (103,46,'Heilongjiang','HEI','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (104,46,'Henan','HEN','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (105,46,'Hubei','HUB','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (106,46,'Hunan','HUN','ADMIN','2018-03-08 15:38:17',NULL,NULL,'Y'),
+ (107,46,'Jiangsu','JSU','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (108,46,'Jiangxi','JXI','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (109,46,'Jilin','JIL','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (110,46,'Liaoning','LIA','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (111,46,'Nei Mongol','MON','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (112,46,'Ningxia','NIN','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (113,46,'Qinghai','QIN','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (114,46,'Shaanxi','SHA','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (115,46,'Shandong','SHD','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (116,46,'Shanghai','SHH','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (117,46,'Shanxi','SHX','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (118,46,'Sichuan','SIC','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (119,46,'Tianjin','TIA','ADMIN','2018-03-08 15:38:18',NULL,NULL,'Y'),
+ (120,46,'Xinjiang','XIN','ADMIN','2018-03-08 15:38:19',NULL,NULL,'Y'),
+ (121,46,'Xizang','XIZ','ADMIN','2018-03-08 15:38:19',NULL,NULL,'Y'),
+ (122,46,'Yunnan','YUN','ADMIN','2018-03-08 15:38:19',NULL,NULL,'Y'),
+ (123,46,'Zhejiang','ZHE','ADMIN','2018-03-08 15:38:19',NULL,NULL,'Y'),
+ (124,112,'Aichi','AIC','ADMIN','2018-03-08 15:40:20',NULL,NULL,'Y'),
+ (125,112,'Akita','AKT','ADMIN','2018-03-08 15:40:20',NULL,NULL,'Y'),
+ (126,112,'Aomori','AMR','ADMIN','2018-03-08 15:40:20',NULL,NULL,'Y'),
+ (127,112,'Chiba','CHB','ADMIN','2018-03-08 15:40:20',NULL,NULL,'Y'),
+ (128,112,'Ehime','EHM','ADMIN','2018-03-08 15:40:20',NULL,NULL,'Y'),
+ (129,112,'Fukui','FKI','ADMIN','2018-03-08 15:40:20',NULL,NULL,'Y'),
+ (130,112,'Fukuoka','FKO','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (131,112,'Fukushima','FSM','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (132,112,'Gifu','GFU','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (133,112,'Gunma','GUM','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (134,112,'Hiroshima','HRS','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (135,112,'Hokkaido','HKD','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (136,112,'Hyogo','HYG','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (137,112,'Ibaraki','IBR','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (138,112,'Ishikawa','IKW','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (139,112,'Iwate','IWT','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (140,112,'Kagawa','KGW','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (141,112,'Kagoshima','KGS','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (142,112,'Kanagawa','KNG','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (143,112,'Kochi','KCH','ADMIN','2018-03-08 15:40:21',NULL,NULL,'Y'),
+ (144,112,'Kumamoto','KMM','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (145,112,'Kyoto','KYT','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (146,112,'Mie','MIE','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (147,112,'Miyagi','MYG','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (148,112,'Miyazaki','MYZ','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (149,112,'Nagano','NGN','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (150,112,'Nagasaki','NGS','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (151,112,'Nara','NRA','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (152,112,'Niigata','NGT','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (153,112,'Oita','OTA','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (154,112,'Okayama','OKY','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (155,112,'Okinawa','OKN','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (156,112,'Osaka','OSK','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (157,112,'Saga','SAG','ADMIN','2018-03-08 15:40:22',NULL,NULL,'Y'),
+ (158,112,'Saitama','STM','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (159,112,'Shiga','SHG','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (160,112,'Shimane','SMN','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (161,112,'Shizuoka','SZK','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (162,112,'Tochigi','TOC','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (163,112,'Tokushima','TKS','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (164,112,'Tokyo','TKY','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (165,112,'Tottori','TTR','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (166,112,'Toyama','TYM','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (167,112,'Wakayama','WKY','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (168,112,'Yamagata','YGT','ADMIN','2018-03-08 15:40:23',NULL,NULL,'Y'),
+ (169,112,'Yamaguchi','YGC','ADMIN','2018-03-08 15:40:24',NULL,NULL,'Y'),
+ (170,112,'Yamanashi','YNS','ADMIN','2018-03-08 15:40:24',NULL,NULL,'Y'),
+ (171,143,'Aguascalientes','AGS','ADMIN','2018-03-08 15:42:08',NULL,NULL,'Y'),
+ (172,143,'Baja California Norte','BCN','ADMIN','2018-03-08 15:42:08',NULL,NULL,'Y'),
+ (173,143,'Baja California Sur','BCS','ADMIN','2018-03-08 15:42:08',NULL,NULL,'Y'),
+ (174,143,'Campeche','CAMP','ADMIN','2018-03-08 15:42:08',NULL,NULL,'Y'),
+ (175,143,'Chiapas','CHIS','ADMIN','2018-03-08 15:42:08',NULL,NULL,'Y'),
+ (176,143,'Chihuahua','CHIH','ADMIN','2018-03-08 15:42:08',NULL,NULL,'Y'),
+ (177,143,'Coahuila','COAH','ADMIN','2018-03-08 15:42:08',NULL,NULL,'Y'),
+ (178,143,'Colima','COL','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (179,143,'Distrito Federal','DF','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (180,143,'Durango','DGO','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (181,143,'Guanajuato','GTO','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (182,143,'Guerrero','GRO','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (183,143,'Hidalgo','HGO','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (184,143,'Jalisco','JAL','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (185,143,'Mexico','EDO MEX','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (186,143,'Michoacan','MICH','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (187,143,'Morelos','MOR','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (188,143,'Nayarit','NAY','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (189,143,'Nuevo Leon','NL','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (190,143,'Oaxaca','OAX','ADMIN','2018-03-08 15:42:09',NULL,NULL,'Y'),
+ (191,143,'Puebla','PUE','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (192,143,'Queretaro','QRO','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (193,143,'Quintana Roo','QROO','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (194,143,'San Luis Potosi','SLP','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (195,143,'Sinaloa','SIN','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (196,143,'Sonora','SON','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (197,143,'Tabasco','TAB','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (198,143,'Tamulipas','TAMP','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (199,143,'Tlaxcala','TLAX','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (200,143,'Veracruz','VER','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (201,143,'Yucatán','YUC','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (202,143,'Zacatecas','ZAC','ADMIN','2018-03-08 15:42:10',NULL,NULL,'Y'),
+ (203,235,'Alabama','AL','ADMIN','2018-03-08 15:44:00',NULL,NULL,'Y'),
+ (204,235,'Alaska','AK','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (205,235,'Arizona','AZ','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (206,235,'Arkansas','AR','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (207,235,'Armed Forces Pacific','AP','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (208,235,'Armed Forces, Americas','AA','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (209,235,'Armed Forces, Europe & Other','AE','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (210,235,'California','CA','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (211,235,'Colorado','CO','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (212,235,'Connecticut','CT','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (213,235,'Delaware','DE','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (214,235,'District Of Columbia','DC','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (215,235,'Florida','FL','ADMIN','2018-03-08 15:44:01',NULL,NULL,'Y'),
+ (216,235,'Georgia','GA','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (217,235,'Hawaii','HI','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (218,235,'Idaho','ID','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (219,235,'Illinois','IL','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (220,235,'Indiana','IN','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (221,235,'Iowa','IA','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (222,235,'Kansas','KS','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (223,235,'Kentucky','KY','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (224,235,'Louisiana','LA','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (225,235,'Maine','ME','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (226,235,'Maryland','MD','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (227,235,'Massachusetts','MA','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (228,235,'Michigan','MI','ADMIN','2018-03-08 15:44:02',NULL,NULL,'Y'),
+ (229,235,'Minnesota','MN','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (230,235,'Mississippi','MS','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (231,235,'Missouri','MO','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (232,235,'Montana','MT','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (233,235,'Nebraska','NE','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (234,235,'Nevada','NV','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (235,235,'New Hampshire','NH','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (236,235,'New Jersey','NJ','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (237,235,'New Mexico','NM','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (238,235,'New York','NY','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (239,235,'North Carolina','NC','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (240,235,'North Dakota','ND','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (241,235,'Ohio','OH','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (242,235,'Oklahoma','OK','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (243,235,'Oregon','OR','ADMIN','2018-03-08 15:44:03',NULL,NULL,'Y'),
+ (244,235,'Pennsylvania','PA','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (245,235,'Rhode Island','RI','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (246,235,'South Carolina','SC','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (247,235,'South Dakota','SD','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (248,235,'Tennessee','TN','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (249,235,'Texas','TX','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (250,235,'Utah','UT','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (251,235,'Vermont','VT','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (252,235,'Virginia','VA','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (253,235,'Washington','WA','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (254,235,'West Virginia','WV','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (255,235,'Wisconsin','WI','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (256,235,'Wyoming','WY','ADMIN','2018-03-08 15:44:04',NULL,NULL,'Y'),
+ (257,242,'Virgin Islands','VI','ADMIN','2018-03-08 15:46:10',NULL,NULL,'Y'),
+ (258,205,'Eastern Cape','EC','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (259,205,'Free State','FS','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (260,205,'Gauteng','GT','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (261,205,'KwaZulu-Natal','KN','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (262,205,'Limpopo','LP','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (263,205,'Mpumalanga','MP','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (264,205,'North West','NW','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (265,205,'Northern Cape','NC','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (266,205,'Western Cape','WC','ADMIN','2018-03-08 15:56:46',NULL,NULL,'Y'),
+ (267,19,'Barisal','BA','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y'),
+ (268,19,'Chittagong','CH','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y'),
+ (269,19,'Dhaka','DK','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y'),
+ (270,19,'Khulna','KH','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y'),
+ (271,19,'Mymensingh','MS','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y'),
+ (272,19,'Rajshahi','RS','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y'),
+ (273,19,'Rangpur','RG','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y'),
+ (274,19,'Sylhet','SH','ADMIN','2018-03-08 16:06:17',NULL,NULL,'Y');
+/*!40000 ALTER TABLE `state_master_lookup` ENABLE KEYS */;
+
+
+--
+-- Definition of table `user_master`
+--
+
+DROP TABLE IF EXISTS `user_master`;
+CREATE TABLE `user_master` (
+  `user_code` int(11) NOT NULL AUTO_INCREMENT,
+  `country_code` int(11) NOT NULL,
+  `state_code` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `anniversary` date DEFAULT NULL,
+  `mobile_no` char(15) DEFAULT NULL,
+  `landline_no` char(15) DEFAULT NULL,
+  `email_id` varchar(100) NOT NULL,
+  `address1` varchar(80) DEFAULT NULL,
+  `address2` varchar(80) DEFAULT NULL,
+  `address3` varchar(80) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `postal_code` char(10) DEFAULT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `active` char(1) DEFAULT 'Y',
+  PRIMARY KEY (`user_code`) USING BTREE,
+  UNIQUE KEY `Index_5` (`email_id`),
+  KEY `country_code` (`country_code`),
+  KEY `state_code` (`state_code`),
+  KEY `first_name` (`first_name`),
+  CONSTRAINT `FK_country_code` FOREIGN KEY (`country_code`) REFERENCES `country_master` (`country_code`),
+  CONSTRAINT `FK_state_code` FOREIGN KEY (`state_code`) REFERENCES `state_master` (`state_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_master`
+--
+
+/*!40000 ALTER TABLE `user_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_master` ENABLE KEYS */;
+
+
+--
+-- Definition of procedure `sp_campaign_master`
+--
+
+DROP PROCEDURE IF EXISTS `sp_campaign_master`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_campaign_master`(IN `campaignMaster` JSON, IN `statement` VARCHAR(30), IN `flag` INT, IN `cmp_code` INT)
+begin
+
+declare i_country_code int;
+declare i_state_code int;
+declare i_campaign_name varchar(100);
+declare i_date_from date;
+declare i_date_to date;
+declare i_created_at datetime;
+declare i_updated_at datetime;
+declare i_created_by varchar(30);
+declare i_updated_by varchar(30);
+declare i_status SMALLINT(10);
+declare i_notes varchar(4000);
+
+set i_country_code =jSON_UNQUOTE( JSON_EXTRACT(campaignMaster,'$.country_code'));
+set i_state_code = jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.state_code'));
+set i_campaign_name = jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.campaign'));
+set i_date_from = CAST(jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.date_from'))as DATE);
+set i_date_to = CAST(jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.date_to'))as DATE);
+set i_created_at = CAST(jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.created_at'))as DATETIME);
+set i_updated_at = CAST(jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.updated_at')) as DATETIME);
+set i_updated_by = jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.updated_by'));
+set i_created_by = jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.created_by'));
+set i_status = jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.active'));
+set i_notes = jSON_UNQUOTE(JSON_EXTRACT(campaignMaster,'$.notes'));
+
+if flag=1 THEN
+	if statement='Insert' then
+		insert into campaign(country_code,state_code,campaign,date_from,date_to,created_at,updated_at,created_by,updated_by,active,notes) values(i_country_code,i_state_code,i_date_from,i_date_to,i_created_at,i_updated_at,i_created_by,i_updated_by,i_status,i_notes);
+	elseif statement='Select' then
+		SELECT country_master.country, state_master.state,campaign.campaign,campaign.date_from,campaign.date_to,campaign.active FROM country_master INNER JOIN state_master INNER JOIN campaign ON  campaign.country_code=country_master.country_code and campaign.state_code=state_master.state_code;
+    end if;
+    else
+    IF statement='Update' THEN
+    	update campaign set country_code=i_country_code, state_code=i_state_code,date_from=i_date_from,date_to=i_date_to,active=i_status,created_at=i_created_at,updated_at=i_updated_at,updated_by=i_updated_by,created_by=i_created_by,notes=i_notes where campaign_code=cmp_code;
+    ELSEIF statement='Delete' THEN
+    	DELETE from state_master WHERE state_code=cmp_code;
+	end if;
+ end if;
+	
+end $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of procedure `sp_country_master`
+--
+
+DROP PROCEDURE IF EXISTS `sp_country_master`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_country_master`(IN `countryMaster` JSON, IN `statement` VARCHAR(30), IN `flag` INT, IN `cntry_code` INT)
+begin
+
+declare i_country_name varchar(100);
+declare i_short_name varchar(5);
+declare i_created_at datetime;
+declare i_updated_at datetime;
+declare i_created_by varchar(30);
+declare i_updated_by varchar(30);
+declare i_status SMALLINT(10);
+
+set i_country_name = jSON_UNQUOTE(JSON_EXTRACT(countryMaster,'$.country'));
+set i_short_name = jSON_UNQUOTE(JSON_EXTRACT(countryMaster,'$.country_short_name'));
+set i_created_at = CAST(jSON_UNQUOTE(JSON_EXTRACT(countryMaster,'$.created_at'))as DATETIME);
+set i_updated_at = CAST(jSON_UNQUOTE(JSON_EXTRACT(countryMaster,'$.updated_at')) as DATETIME);
+set i_updated_by = jSON_UNQUOTE(JSON_EXTRACT(countryMaster,'$.updated_by'));
+set i_created_by = jSON_UNQUOTE(JSON_EXTRACT(countryMaster,'$.created_by'));
+set i_status = jSON_UNQUOTE(JSON_EXTRACT(countryMaster,'$.active'));
+if flag=1 THEN
+	if statement='Insert' then
+		insert into country_master(country,country_short_name,created_at,updated_at,created_by,updated_by,active) values(i_country_name,i_short_name,i_created_at,i_updated_at,i_created_by,i_updated_by,i_status);
+	elseif statement='Select' then
+		select *from country_master;
+    end if;
+    else
+    IF statement='Update' THEN
+    	update country_master set country=i_country_name,country_short_name=i_short_name,active=i_status,created_at=i_created_at,updated_at=i_updated_at,updated_by=i_updated_by,created_by=i_created_by where country_code=cntry_code;
+    ELSEIF statement='Delete' THEN
+    	DELETE from country_master WHERE country_code=cntry_code;
+	ELSEIF statement='SelectById' THEN
+    	SELECT *from country_master WHERE country_code=cntry_code;
+	end if;
+ end if;
+	
+end $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of procedure `sp_state_master`
+--
+
+DROP PROCEDURE IF EXISTS `sp_state_master`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_state_master`(IN `stateMaster` JSON, IN `statement` VARCHAR(30), IN `flag` INT, IN `st_code` INT)
+begin
+
+declare i_country_code int;
+declare i_state_name varchar(100);
+declare i_short_name varchar(5);
+declare i_created_at datetime;
+declare i_updated_at datetime;
+declare i_created_by varchar(30);
+declare i_updated_by varchar(30);
+
+
+set i_country_code = jSON_UNQUOTE(JSON_EXTRACT(stateMaster,'$.country_code'));
+set i_state_name = jSON_UNQUOTE(JSON_EXTRACT(stateMaster,'$.state'));
+set i_short_name = jSON_UNQUOTE(JSON_EXTRACT(stateMaster,'$.state_short_name'));
+set i_created_at = CAST(jSON_UNQUOTE(JSON_EXTRACT(stateMaster,'$.created_at'))as DATETIME);
+set i_updated_at = CAST(jSON_UNQUOTE(JSON_EXTRACT(stateMaster,'$.updated_at')) as DATETIME);
+set i_updated_by = jSON_UNQUOTE(JSON_EXTRACT(stateMaster,'$.updated_by'));
+set i_created_by = jSON_UNQUOTE(JSON_EXTRACT(stateMaster,'$.created_by'));
+
+if flag=1 THEN
+	if statement='Insert' then
+		insert into state_master(country_code,state,state_short_name,created_at,updated_at,created_by,updated_by) values(i_country_code,i_state_name,i_short_name,i_created_at,i_updated_at,i_created_by,i_updated_by);
+	elseif statement='Select' then
+		SELECT country_master.country, state_master.state,state_master.state_short_name FROM country_master INNER JOIN state_master ON country_master.country_code=state_master.country_code;
+    end if;
+    else
+    IF statement='Update' THEN
+    	update state_master set country_code=i_country_code, state=i_state_name,state_short_name=i_short_name,active=i_status,created_at=i_created_at,updated_at=i_updated_at,updated_by=i_updated_by,created_by=i_created_by where state_code=cntry_code;
+    ELSEIF statement='Delete' THEN
+    	DELETE from state_master WHERE state_code=st_code;
+	ELSEIF statement='SelectById' THEN
+    	SELECT *from state_master WHERE state_code=st_code;
+	end if;
+ end if;
+	
+end $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of procedure `sp_user_master`
+--
+
+DROP PROCEDURE IF EXISTS `sp_user_master`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_user_master`(userMaster JSON,statement varchar(30),user_code int)
+begin
+
+declare i_country_code int;
+declare i_state_code int;
+declare i_first_name varchar(50);
+declare i_last_name varchar(50);
+declare i_dob char(10);
+declare i_anniversary char(10);
+declare i_mobile_no char(15);
+declare i_landline_no char(15);
+declare i_email varchar(100);
+declare i_active smallint(6);
+declare i_address1 varchar(80);
+declare i_address2 varchar(80);
+declare i_address3 varchar(80);
+declare i_city varchar(50);
+declare i_postal_code char(10);
+
+declare i_created_on datetime;
+declare i_updated_on char(19);
+declare i_created_by varchar(30);
+declare i_updated_by varchar(30);
+declare m_dob date;
+declare m_anniversary date;
+declare m_updated_on date;
+
+
+set i_country_code=JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.country_code'));
+set i_state_code = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.state_code'));
+set i_first_name = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.first_name'));
+set i_last_name = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.last_name'));
+set i_dob=(select (if (ifnull(json_extract(json_object(userMaster,null),'$.dob'),'0000-00-00')='0000-00-00', (CAST(jSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.dob'))as char)) , (CAST(jSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.dob'))as char)))));
+set i_anniversary = (select (if (ifnull(json_extract(json_object(userMaster,null),'$.anniversary'),'0000-00-00')='0000-00-00', (CAST(jSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.anniversary'))as char)) , (CAST(jSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.anniversary'))as char)))));
+set i_mobile_no = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.mobile_no'));
+set i_landline_no = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.landline_no'));
+set i_email = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.email_id'));
+set i_active = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.active'));
+set i_address1 = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.address1'));
+set i_address2 = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.address2'));
+set i_address3 = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.address3'));
+set i_city = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.city'));
+set i_postal_code = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.postal_code'));
+set i_created_on = now();
+set i_updated_on = (select (if (ifnull(json_extract(json_object(userMaster,null),'$.updated_on'),'0000-00-00')='0000-00-00', (CAST(jSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.updated_on'))as char)) , (CAST(jSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.updated_on'))as char)))));
+set i_updated_by = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.updated_by'));
+set i_created_by = JSON_UNQUOTE(JSON_EXTRACT(userMaster,'$.created_by'));
+
+set m_dob=(select case when cast(ifnull(i_dob,'0000-00-00')as date) is null then '0000-00-00' else  cast(i_dob as date) end);
+set m_anniversary=(select case when cast(ifnull(i_anniversary,'0000-00-00')as date) is null then '0000-00-00' else  cast(i_anniversary as date) end);
+set m_updated_on=(select case when cast(ifnull(i_updated_on,'0000-00-00')as date) is null then '0000-00-00' else  cast(i_updated_on as date) end);
+
+
+	if statement='Insert' then
+
+  		insert into user_master(country_code,state_code,first_name,last_name,dob,anniversary,mobile_no,landline_no,email_id,
+                              active,address1,address2,address3,city,postal_code,created_by,created_on)
+      values(i_country_code,i_state_code,i_first_name,i_last_name,m_dob,m_anniversary,i_mobile_no,i_landline_no,i_email,
+      i_active,i_address1,i_address2,i_address3,i_city,i_postal_code,i_created_by,i_created_on);
+
+
+	elseif statement='Select' then
+
+		select * from user_master;
+
+  end if;
+
+
+ 
+end $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
