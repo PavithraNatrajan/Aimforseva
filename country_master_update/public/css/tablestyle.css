@@ -1,0 +1,128 @@
+
+		/* --------------------------------- RED ---------------------------- */
+.red {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.red th, .red td {
+    text-align: left;
+    padding: 8px;
+}
+
+.red tr:nth-child(odd){background-color:rgba(202, 91, 56, 0.46);}
+.red tr:nth-child(even){background-color:rgba(158, 158, 158, 0.42);}
+.red th {
+    background-color: #e6400c;
+    color: white;
+}
+.red th:hover {
+    background-color:grey;
+    color: white;
+}
+/* --------------------------------- BLUE ---------------------------- */
+.blue {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.blue th, .blue td {
+    text-align: left;
+    padding: 8px;
+}
+
+.blue tr:nth-child(odd){background-color:rgba(50, 115, 167, 0.4);}
+.blue tr:nth-child(even){background-color:rgba(158, 158, 158, 0.42);}
+.blue th {
+    background-color:navy;
+    color: white;
+}
+.red th:hover {
+    background-color:grey;
+    color: white;
+}
+/*----------------------- YELLOW --------------------- */
+.yellow {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.yellow th, .yellow td {
+    text-align: left;
+    padding: 8px;
+}
+
+.yellow tr:nth-child(odd){background-color:rgba(179, 142, 33, 0.66);}
+.yellow tr:nth-child(even){background-color:rgba(158, 158, 158, 0.42);}
+.yellow th {
+    background-color:#e29420;
+    color: white;
+}
+.yellow th:hover {
+    background-color:grey;
+    color: white;
+}
+.yellow tr:hover{background-color:grey;}
+/*----------------------- MAROON --------------------- */
+.maroon {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.maroon th, .maroon td {
+    text-align: left;
+    padding: 8px;
+}
+
+.maroon tr:nth-child(odd){background-color:rgba(128, 72, 53, 0.56);}
+.maroon tr:nth-child(even){background-color:rgba(158, 158, 158, 0.42);}
+.maroon th {
+    background-color:rgb(119, 38, 9);
+    color: white;
+}
+.maroon th:hover {
+    background-color:grey;
+    color: white;
+}
+/*----------------------- PINK --------------------- */
+.pink {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.pink th, .pink td {
+    text-align: left;
+    padding: 8px;
+}
+
+.pink tr:nth-child(odd){background-color:rgba(167, 96, 120, 0.44);}
+.pink tr:nth-child(even){background-color:rgba(158, 158, 158, 0.42);}
+.pink th {
+    background-color:rgba(171, 34, 81, 0.84);
+    color: white;
+}
+.pink th:hover {
+    background-color:grey;
+    color: white;
+}
+/*----------------------- GREEN --------------------- */
+.green {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.green th, .green td {
+    text-align: left;
+    padding: 8px;
+}
+
+.green tr:nth-child(odd){background-color:rgba(159, 169, 54, 0.52);}
+.green tr:nth-child(even){background-color:rgba(158, 158, 158, 0.42);}
+.green th {
+    background-color:rgb(82, 123, 33);
+    color: white;
+}
+.green th:hover {
+    background-color:grey;
+    color: white;
+}

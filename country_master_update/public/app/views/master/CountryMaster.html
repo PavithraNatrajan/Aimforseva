@@ -1,0 +1,151 @@
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Simple Tables</title> -->
+  <!-- Tell the browser to be responsive to screen width -->
+  <!-- <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="css/ionicons.min.css">
+ 
+  <link rel="stylesheet" href="css/AdminLTE.min.css">
+  
+  <link rel="stylesheet" href="css/skins/_all-skins.min.css"> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+<!--Filename : CountryMaster.html*
+
+//Purpose /Functionality: it is a html file which displays all the countries with their short names and has the 'add country' functionality.  
+						  
+// Author : Mythreyi(id:T0005)
+
+// Createdon: 27-feb-1018-->
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+   <!-- Content Header (Page header) -->
+    <!-- Main content-->
+     <!-- <script src="countryMasterCtrl.js"></script>
+
+      <div class="container" ng-controller="countryCtrl" >-->
+	
+	<form name="form" class="form-horizontal" ng-submit="countryMasterFunc1(regData);" novalidate> 
+    <section class="content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header">
+              <div class="bg-navy-active color-palette">
+                <br>
+                <h3 class="box-title">View Countries</h3>
+              </div>
+            </div>
+          </div>
+          <div class="box-body">        
+            <table class="table table-striped">             
+              <tr>        
+                <th ng-click="sort('country_name')">Country Name
+                  <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('country_short_name')">Country Short Name
+                  <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th>Action</th>
+              </tr>
+               <tr dir-paginate="user in countryMaster|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+                <td>{{user.country}}</td>
+                <td>{{user.country_short_name}}</td>
+                <td><button type="button" class="btn bg-teal-gradient btn-sm" ng-click="edit(user.country_code)">
+                    <span class="glyphicon glyphicon-edit"></span>  
+                    </button>
+                    <button type="button" class="btn bg-teal-gradient btn-sm" ng-click="remove(user.country_code)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button> 
+                </td>              
+              </tr> 
+            </table> 
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box">
+            <div class="box box-primary">
+              <div class="box-header">
+                <div class="bg-navy-active color-palette">
+                <br>
+                  <h3 class="box-title"> Add</h3>
+                </div>
+                <br>
+                <div class="box-body no-padding">
+                  <div class="form-group" show-errors='{showSuccess: true}'>
+                    <label class="col-md-4 control-label" >Country Name</label>
+                    <div class="col-md-6  inputGroupContainer">
+                      <div class="input-group"> <span class="input-group-addon"><li class="glyphicon glyphicon-flag"></li></span>
+                        <input list="countryMasters" name="country"  placeholder="Country Name" class="form-control" ng-model="regData.country" required>
+                        <datalist id="countryMasters" >
+                          <option value="Dr.Test1" ng-selected="selected"></option>
+                          <option value="Dr.Test2"></option>
+                          <option value="Dr.Test2"></option>
+                        <option ng-repeat="x in countryMaster" value="{{x.country}}">Country :{{x.country}}</option>
+                        </datalist>
+                      </div>
+                      <div style="color:red" ng-show="form.country.$touched && form.country.$invalid">The Country Name is required.    
+                      </div>					
+                    </div>
+                  </div>
+               
+                <label class="col-md-4 control-label" >Country Short Name</label>
+                <div class="col-md-6  inputGroupContainer">
+                  <div class="input-group"> <span class="input-group-addon"><li class="glyphicon glyphicon-flag"></li></span>
+                    <input name="country_short_name" placeholder="Short name" class="form-control"  type="text" ng-model="regData.country_short_name" maxlength="3">
+                  </div>
+                </div>
+                <br>
+                <br>
+                <label class="col-md-4 control-label" >Active</label>
+                  <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group" >
+                      <label>
+                        <input type="radio" name="r3" class="flat-red" value="1" ng-model="regData.active">
+                        Yes
+                      </label>
+                      
+                      <label>
+                        <input type="radio" name="r3" class="flat-red" value="0" ng-model="regData.active">
+                        No
+                      </label>
+                    </div>
+                    <div class="col-md-6  inputGroupContainer">
+                      <button type="submit" class="btn btn-block btn-primary" ng-click="setinsertCountry(regData)">Save</button>
+                    </div>
+                    <div class="col-md-6  inputGroupContainer">
+                      <button type="reset" class="btn btn-block btn-primary" ng-click="reset(form)">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</form>
+</div> 
+ 
+  
+
+    

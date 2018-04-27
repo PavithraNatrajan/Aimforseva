@@ -1,0 +1,11 @@
+
+{
+    "bodyColor": "White",
+    "tableColor":"blue",
+    "navColor":"blue",
+    "headerColor":"navy",
+    "instution":"CDTSCORP",
+    "instutionaddress":"No. 21,1st Street,Kasturibhai Nagar,Adayar,Chennai-600020,Email:info@cdtscor.com",
+    "instutionlogo":"/app/jsonprop/Logo.jpg"
+
+}

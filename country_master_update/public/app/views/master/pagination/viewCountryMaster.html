@@ -1,0 +1,151 @@
+
+<div class="container" ng-controller="countryMaster">
+<div class="row">
+    <div class="col-sm-6" style="background-color: #0ff;">
+      
+  <!--div role="main" class="container theme-showcase" -->
+      <div class="" style="margin-top:90px;">
+        <div class="col-lg-8">
+      
+      
+      <div class="bs-component" >
+        <h4 style="width: 100%;height: 30px; background-color: #003366;color: #fff;padding-left: 20px;border-radius: 5px; line-height: 30px; size: thin;">Country Master(Add)</h4>
+        <form class="form-inline" >
+          <div class="form-group">
+            <label >Search</label>
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+          </div>
+        </form>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th ng-click="sort('first_name')">Sl. No.
+                <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('first_name')">Country Name
+                <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('last_name')">Country Short Name
+                <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('last_name')">Edit
+                <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('first_name')">Update
+                <span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('last_name')">Delete
+                <span class="glyphicon sort-icon" ng-show="sortKey=='last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr dir-paginate="user in countryMaster|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+              <td>{{$index+1}}</td>
+              <td><input name="country"   ng-model="user.country" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+              <td><input name="country_short_name"   ng-model="user.country_short_name" ng-disabled="!enabledEdit[{{$index}}]"/></td>
+              <!--td>{{user.country}}</td>
+              <td>{{user.country_short_name}}</td-->
+              <!--td><button type="submit"  class="glyphicon glyphicon-pencil" ng-click="edit(user.country_code)"><i class="primary"></i></button></td>
+              
+              <td><button type="submit" class="glyphicon glyphicon-remove" ng-click="remove(user.country_code)"></button></td>
+              <td><i class="glyphicon glyphicon-list"></i></td-->
+                <td><i class="glyphicon glyphicon-pencil" ng-click="editCountry($index)"></i></td><!--  -->
+                <td><i class="glyphicon glyphicon-saved" ng-click="update(user)"  ></i></td>
+                <td><i class="glyphicon glyphicon-remove" ng-click="remove(user.country_code)"  ></i></td>
+            </tr>
+          </tbody>
+        </table> 
+        <dir-pagination-controls
+          max-size="5"
+          direction-links="true"
+          boundary-links="true" >
+        </dir-pagination-controls>
+      </div>
+    </div>
+    <!--div>
+      Link to <a href="http://code.ciphertrick.com/2015/05/31/search-sort-and-pagination-ngrepeat-angularjs/ ">tutorial</a>.
+    </div-->
+      </div>
+    <!--/div--><!-- end of table container -->
+
+    </div>
+    <div class="col-sm-6" style="background-color: #000;">
+      <div class="page-header">
+  <!--h4>Countrymaster {{main.first_name}}</h4-->
+  
+</div>
+      <!--div class="container" -->
+  <h4 style="width: 100%;height: 30px; background-color: #003366;color: #fff;padding-left: 20px;border-radius: 5px; line-height: 30px; size: thin;">Country Master(Add)</h4>
+  <form class="form-horizontal"  >
+    <!--div class="jumbotron"-->
+      <div class="row">
+          <div class="col-md-12">
+                <div class="form-group">
+                 <label class="col-md-4 control-label" >Country Name</label>
+                  <div class="col-md-6  inputGroupContainer">
+                      <div class="input-group"> <span class="input-group-addon"><li class="glyphicon glyphicon-flag"></li></span>
+                      <!--input name="country" placeholder="Country Name" class="form-control"  type="text" ng-model="countryMaster.regData.country" -->
+
+                      <input list="countryMasters" name="country"  placeholder="Country Name" class="form-control" ng-model="regData.country" >
+                      <datalist id="countryMasters" >
+                      <option ng-repeat="x in countryMaster" value="{{x.country}}">Country :{{x.country}}</option>
+                      </datalist>
+                    </div>
+                </div>
+              </div>
+                <div class="form-group">
+                 <label class="col-md-4 control-label" >Country Short Name</label>
+                  <div class="col-md-6  inputGroupContainer">
+                      <div class="input-group"> <span class="input-group-addon"><li class="glyphicon glyphicon-flag"></li></span>
+                      <input name="country_short_name" placeholder="Short name" class="form-control"  type="text" ng-model="regData.country_short_name" maxlength="3">
+                    </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Active</label>
+                <div class="col-md-6 selectContainer">
+                  <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="active" class="form-control selectpicker" ng-model="regData.active">
+                      <option>Please select</option>
+                      <option value="1">Yes</option>
+                      <option value="0">No</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+             <table style="margin: 0 auto;">
+              <tr>  
+                <td>
+                  <div class="btn-group">
+                    <button type="submit" ng-click="setCountryMaster(regData)"  class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary">Reset</button>
+                  </div>
+                </td>
+              </tr>
+             </table>       
+            </div>   
+          </div>
+      <!--/div--><!-- end of jumbo tron -->
+    <!--/div--><!-- end of container -->
+  </form>
+  <br>
+  <div class="jumbotron text-center" ng-show="countryMaster.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading</p>
+  </div>
+  <br>
+  <div class="row show-hide-message" ng-show="countryMaster.successMsg">
+    <div class="alert alert-success">{{countryMaster.successMsg}}</div>
+  </div>
+  <br>
+  <div class="row show-hide-message" ng-show="countryMaster.errorMsg">
+    <div class="alert alert-danger">{{countryMaster.errorMsg}}</div>
+  </div>
+    </div>
+</div>
+  
+
+</div><!-- end of container body -->

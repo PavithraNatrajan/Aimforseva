@@ -1,0 +1,107 @@
+
+
+var connection = require('./../../model/config');
+module.exports=function(router)
+{
+	router.post('/countryMaster',function(req,res)
+	{
+		//var today = new Date();//current data and time store into the database
+    var  today='2018-02-15 13:47:00.620';
+///collect data from html pages that is Countrymaster.html
+		 var countryMaster={
+        "country":req.body.country,
+        "country_short_name":req.body.country_short_name,
+        "active":req.body.active,
+        "created_at":today,
+        "updated_at":today,
+        "created_by":'Admin',
+        "updated_by":'Admin'
+    }
+   if(req.body.country==null||req.body.country==''||req.body.country_short_name==null||req.body.country_short_name=='')
+    {
+        //res.json({success: false,message: 'Please fill the all detail'});
+         res.send(countryMaster);
+      
+    }
+    else
+    {
+      
+      //var sql='call sp_country_master('+"'"+JSON.stringify(countryMaster)+"'"+')';
+      var sql='call sp_country_master('+"'"+JSON.stringify(countryMaster)+"',"+"'Insert',"+"1,"+"000"+')';///this is store procedure to store the data by using into the json format
+    //  console.log(countryMaster);
+      //console.log(sql);
+   // connection.query('INSERT INTO country_master SET ?',countryMaster, function (error, results, fields) {
+      //connection.query('call sp_country(?, ?, ?,?,?)', [countryMaster.country, countryMaster.country_short_name, countryMaster.created_at,countryMaster.updated_at,countryMaster.active],function (error, results, fields) {
+
+        //error give any exceptional error is come
+        //results give all the data from database
+        // fields give the all field of database of current table
+        connection.query(sql,countryMaster,function (error, results, fields) {
+      if (error && error.errno=='1062') {
+        res.json({
+            success:false,
+            message:'Duplicate value found'
+
+        })
+        //res.send(error);
+      }
+      else if(error)
+       {
+        /*res.json({
+            success:false,
+            message:'there are some error with query'
+          })
+          */
+          res.send(error);
+       }
+      else{
+          res.json({
+            success:true,
+            data:results,
+            message:'Country Inserted sucessfully'
+        })
+      }
+    });
+    }
+	});
+
+    //rest api to get all country
+router.get('/countryMaster', function (req, res) {
+   var sql='call sp_country_master('+"'"+JSON.stringify({})+"',"+"'Select',"+"1,"+"000"+')';
+   //console.log(sql);
+   connection.query(sql, function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    });
+});
+
+//rest api to get a single country data
+router.get('/countryMaster/:country_code', function (req, res) {
+  var sql='call sp_country_master('+"'"+JSON.stringify({})+"',"+"'Select_By_id',"+"1,"+req.params.country_code+')';
+  console.log(sql);
+   connection.query(sql, function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+});
+//rest api to update record into mysql database
+router.put('/countryMaster', function (req, res) {
+   connection.query('UPDATE `country_master` SET `country`=?,`country_short_name`=? where `country_code`=?', [req.body.country,req.body.country_short_name,  req.body.country_code], function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+});
+
+//rest api to delete record from mysql database
+router.delete('/countryMaster/:country_code', function (req, res) {
+   //console.log(req.body.country_code);
+   var sql='call sp_country_master('+"'"+JSON.stringify({})+"',"+"'Delete',"+"0,"+req.params.country_code+')';
+   console.log(sql);
+   connection.query(sql,  function (error, results, fields) {
+      if (error) throw error;
+      res.end('Record has been deleted!');
+    });
+});
+	return router;	
+}

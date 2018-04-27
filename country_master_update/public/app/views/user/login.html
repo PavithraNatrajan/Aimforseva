@@ -1,0 +1,49 @@
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+     <!-- Main jumbotron for a primary marketing message or call to action -->
+       <div class="container theme-showcase" role="main">
+      <div ng-show="!main.isLoggedIn" class="jumbotron">
+        <h1>ALL INDIA MOVEMENT FOR SEVA</h1>
+      </div>
+     <!--To retrieve home page -->
+    </div> <!-- /container -->
+    
+<div class="jumbotron " style="width: 70% ;height: auto;margin: 0 auto;border-style: solid;
+    border-width: 2px 10px 4px 20px;">
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+<form ng-submit="main.doLogin(logInData);">
+	<div class="form-group">
+				<label class="user">Username</label>
+				<div class="input-group">
+					<span class="input-group-addon"><li class="glyphicon glyphicon-user"></li></span>
+					<input type="text" name="emailId" placeholder="Please enter email / Mobile no." class="form-control" ng-model="main.logInData.email_id">
+				</div>
+	</div>
+	<div class="form-group">
+				<label class="user">Password</label>
+				<div class="input-group">
+					<span class="input-group-addon"><li class="glyphicon glyphicon-lock"></li></span>
+					<input type="password" name="password" placeholder="Please enter password.." class="form-control" ng-model="main.logInData.password">
+				</div>
+	</div>
+	<button class="btn btn-primary" type="submit">Login</button><span><a href="" style="text-align: center;text-decoration: none;" >Forgotten account ?</a></span>
+</form>
+
+<br>
+<div class="jumbotron text-center" ng-show="main.loading">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading...</p>
+</div>
+<br>
+<div class="row show-hide-message" ng-show="main.successMsg">
+	<div class="alert alert-success">{{main.successMsg}}</div>
+</div>
+<br>
+
+<div class="row show-hide-message" ng-show="main.errorMsg">
+	<div class="alert alert-danger">{{main.errorMsg}}</div>
+</div>
+</div><!-- col -->
+</div> 
+</div><!--end of jumbotron -->

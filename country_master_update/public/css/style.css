@@ -1,0 +1,79 @@
+/* Start AdminLTE.css fixes*/
+.box-header > .box-tools {
+	left: 5px;
+}
+
+.box-header > .box-tools button {
+	margin: 0 1px;
+}
+
+.fullscreen-wrapper {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 99999;
+  background-color:#ffa07a;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+/* End AdminLTE.css fixes*/
+
+/* Start of Smart Table Styles */
+.st-sort-ascent:before{
+	content: '\25B2';
+}
+
+.st-sort-descent:before{
+	content: '\25BC';
+}
+
+/* End of Smart Table styles*/
+
+.clswht
+{
+  color:white !important;
+}
+.checkbox label
+{
+  min-height: 0px !important;
+  padding-left: 30px !important;
+}
+
+.redClr
+{
+  color:red;
+  margin-left: -20px;
+  
+}
+.inputControl
+{
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+}
+
+.input-group.input-group-unstyled input.form-control {
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+.input-group-unstyled .input-group-addon {
+    border-radius: 4px;
+    border: 0px;
+    background-color: transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}

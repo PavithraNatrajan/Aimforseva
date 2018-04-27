@@ -1,0 +1,133 @@
+/*
+Guidelines for Comments
+
+Header comments for the Files
+*/
+/****************************************************/
+
+// Filename : country_master.*
+
+//Purpose /Functionality: in this file calling the procedure (sp_country_master) and do the process on table like 
+//(insertion, updation ,deletion ,find single record etc...)
+
+
+// Author : Rajesh kumar ranjan(id:T0007)
+
+// Createdon: 17-feb-1018
+
+// Change history:
+
+// v1.10 date of change /Author name
+
+/****************************************************/
+/*
+Block level Comments:
+
+Block comments to document a method
+*/
+
+/**
+
+* Author : Rajesh Kumar Ranjan(T0007) , Created on:17-feb-2018 , Purpose:in this file calling the procedure (sp_country_master) and do the process on table like 
+//(insertion, updation ,deletion ,find single record etc...)
+
+* @param
+        post
+            countryMaster :It is a webservices is used to in a post method to store the data into the 
+            database by using store procedure(sp_country_master)
+        connection.query 
+            connection : it is come's from the config file for connection to the database
+            query   : It is use to execute the sql query 
+            sql : It is a variable of procudure 
+* @return
+
+* Change history
+
+: **/
+
+var connection = require('./../../model/config');
+module.exports=function(router)
+{
+
+	router.post('/stateMaster',function(req,res)
+	{
+
+		
+		var today = new Date();
+		 var stateMaster={
+        "state":req.body.state,
+        "state_short_name":req.body.state_short_name,
+        "country_code":req.body.country_code,
+        "created_at":today,
+        "updated_at":today
+    }
+     if(req.body.state==null||req.body.state==''||req.body.state_short_name==null||req.body.state_short_name=='')
+    {
+        res.json({success: false,message: 'Please fill the all detail'});
+    }
+    else
+    {
+    connection.query('INSERT INTO state_master SET ?',stateMaster, function (error, results, fields) {
+      if (error.errno=='1062') {
+        res.json({
+            status:false,
+            message:'Dublicate value found'
+
+        })
+        
+       // res.send(error);
+       
+      }
+      else if(error)
+       {
+        res.json({
+            status:false,
+            message:'there are some error with query'
+          })
+       }
+      else{
+          res.json({
+            status:true,
+            data:results,
+            message:'State Inserted sucessfully'
+        })
+      }
+    });
+    }
+	});
+
+    //rest api to get all customers
+router.get('/stateMaster', function (req, res) {
+   connection.query('select * from state_master', function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+});
+
+
+//rest api to get a single customer data
+router.get('/stateMaster/:state_code', function (req, res) {
+   connection.query('select * from state_master where state_code=?', [req.params.state_code], function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+});
+//rest api to update record into mysql database
+router.put('/stateMaster', function (req, res) {
+   connection.query('UPDATE `state_master` SET `state`=?,`state_short_name`=? where `state_code`=?', [req.body.country,req.body.country_short_name,  req.body.state_code], function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+});
+
+//rest api to delete record from mysql database
+router.delete('/stateMaster', function (req, res) {
+   console.log(req.body);
+   connection.query('DELETE FROM `state_master` WHERE `state_code`=?', [req.body.state_code], function (error, results, fields) {
+      if (error) throw error;
+      res.end('Record has been deleted!');
+    });
+});
+
+	return router;	
+}

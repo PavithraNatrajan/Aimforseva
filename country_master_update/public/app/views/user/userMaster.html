@@ -1,0 +1,218 @@
+<!--div class="page-header">
+	<h4>Usermaster {{main.firstName}}</h4>
+	
+</div-->
+<html>
+<head>
+<title></title>
+    <!--script type="text/ng-template" id="generic-messages">
+    <p ng-message="required">This field is required.</p>
+    <p ng-message="minlength">This field is too short.</p>
+    <p ng-message="maxlength">This field is too long.</p>
+  </script>
+  <link rel="stylesheet" type="text/css" href="assets/css/validation.css"-->
+</head>
+<body>
+<br><br>
+
+<div class="container">
+	<h3 style="width: 100%;height: 30px; background-color: #003366;color: #fff;padding-left: 20px;border-radius: 5px; ">User Master(Add)</h3>
+	<form name="formValidation" class="form-horizontal" ng-submit="userMaster.regUser(regData);" >
+	
+		<div class="jumbotron">
+			<div class="row">
+  				<div class="col-md-6">
+  					 <div class="form-group">
+        				<label class="col-md-4 control-label">First Name</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            					<input  name="first_name" placeholder="First Name" class="form-control"   type="text" ng-model="userMaster.regData.firstName"  ng-model="inputname" ng-minlength="2" ng-maxlength="50" ng-pattern="/^\w+$/"  required>
+
+          						</div>
+          						<span ng-show="formValidation.first_name.$touched && formValidation.first_name.$invalid">The name is required.</span>
+          						<!--div ng-messages="formValidation.first_name.$error" ng-show="formValidation.first_name.$dirty">
+     							<p ng-message="pattern">Username can only be alphanumeric with an optional underscore</p>
+      							<p ng-message="maxlength">Username cannot be longer than 12 characters.</p>
+     							 <div ng-messages-include="generic-messages"></div>
+    							</div-->
+    	
+ 
+
+        					</div>
+
+      				 </div>
+
+      				  <div class="form-group">
+       					 <label class="col-md-4 control-label" >Last Name</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            					<input name="last_name" placeholder="Last Name" class="form-control"  type="text" ng-model="userMaster.regData.lastName" >
+          					</div>
+        				</div>
+      				</div>
+
+      				 <div class="form-group">
+        				<label class="col-md-4 control-label">Address 1</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            					<input name="address" placeholder="Address" class="form-control" type="text" ng-model="userMaster.regData.address1">
+          					</div>
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+        				<label class="col-md-4 control-label">Address 2</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            					<input name="address" placeholder="Address" class="form-control" type="text" ng-model="userMaster.regData.address2">
+          					</div>
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+        				<label class="col-md-4 control-label">Address 3</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            					<input name="address" placeholder="Address" class="form-control" type="text" ng-model="userMaster.regData.address3">
+          					</div>
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+        				<label class="col-md-4 control-label">City</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            					<input name="address" placeholder="City" class="form-control" type="text" ng-model="userMaster.regData.city">
+          					</div>
+        				</div>
+      				</div>
+
+      				 <div class="form-group">
+        				<label class="col-md-4 control-label">Pin Code</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            					<input name="zip" placeholder="Zip Code" class="form-control"  type="text" ng-model="userMaster.regData.pinCode">
+          					</div>
+        				</div>
+      				</div>
+      				<div class="form-group">
+						<label class="col-md-4 control-label">Country</label>
+						<div class="col-md-6 selectContainer">
+						  <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+							<select name="state" class="form-control selectpicker" ng-model="userMaster.regData.country" >
+							  <option value=" " >Please select your country</option>
+							  <option value="India">India</option>
+							  <option >Wyoming</option>
+							</select>
+						  </div>
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label class="col-md-4 control-label">State</label>
+						<div class="col-md-6 selectContainer">
+						  <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+							<select name="state" class="form-control selectpicker" ng-model="userMaster.regData.state">
+							  <option value=" " >Please select your state</option>
+							  <option value="Bihar">Bihar</option>
+							  <option>Alaska</option>
+							  <option >Arizona</option>
+							</select>
+						  </div>
+						</div>
+					  </div>
+						 <table style="margin: 0 auto;">
+							<tr>	
+								<td>
+									<div class="btn-group">
+										<button type="submit" class="btn btn-primary">Save</button>
+										<button type="button" class="btn btn-primary">Reset</button>
+									</div>
+								</td>
+							</tr>
+						 </table>				
+  				</div>
+  				<div class="col-md-6">
+  					 <div class="form-group">
+        				<label class="col-md-4 control-label">D.O.B</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            					<input name="zip" placeholder="Zip Code" class="form-control"  type="date" ng-model="userMaster.regData.dob">
+          					</div>
+        				</div>
+      				</div>
+
+      				
+  					 <div class="form-group">
+        				<label class="col-md-4 control-label">Anniversary</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            					<input name="zip" placeholder="Zip Code" class="form-control"  type="date" ng-model="userMaster.regData.anniversary">
+          					</div>
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+       					 <label class="col-md-4 control-label">Mobile No.</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+            					<input name="phone" placeholder="(000)000-0000" class="form-control" type="text" ng-model="userMaster.regData.mobileNo">
+          					</div>
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+       					 <label class="col-md-4 control-label">Landline No.</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+            					<input name="phone" placeholder="(000)000-0000" class="form-control" type="text" ng-model="userMaster.regData.landLineNo">
+          					</div>
+        				</div>
+      				</div>
+
+      				 <div class="form-group">
+       					 <label class="col-md-4 control-label">E-Mail</label>
+        					<div class="col-md-6  inputGroupContainer">
+          						<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            					<input name="email" placeholder="E-Mail Address" class="form-control"  type="text" ng-model="userMaster.regData.emailId">
+          					</div>
+        				</div>
+      				</div>
+
+      				<div class="form-group">
+        <label class="col-md-4 control-label">Active</label>
+        <div class="col-md-6 selectContainer">
+          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select name="state" class="form-control selectpicker" ng-model="userMaster.regData.active">
+              <option value=" " >Please select</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+      </div>
+     
+     
+     
+  				</div>
+			</div>
+		</div>
+	</form>
+	<br>
+	<div class="jumbotron text-center" ng-show="userMaster.loading">
+		<span class="glyphicon glyphicon-repeat spinner"></span>
+		<p>Loading</p>
+	</div>
+	<br>
+	<div class="row show-hide-message" ng-show="userMaster.successMsg">
+		<div class="alert alert-success">{{userMaster.successMsg}}</div>
+	</div>
+	<br>
+	<div class="row show-hide-message" ng-show="userMaster.errorMsg">
+		<div class="alert alert-danger">{{userMaster.errorMsg}}</div>
+	</div>
+
+</div>
+
+
+ </body>
+ </html>

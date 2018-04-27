@@ -602,6 +602,7 @@ router.get('/generalDonorList/:id', function(req, res) {
         if (err) {
             res.json(err);
         } else {
+           
             if (data.length == '0') {
                 res.json({
                     success: false,

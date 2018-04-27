@@ -1,0 +1,6 @@
+[{"screenName":"CountryMaster","screenOrder":"1"},
+    {"screenName":"StateMaster","screenOrder":"2"},
+    {"screenName":"CampaignMaster","screenOrder":"3"},
+    {"screenName":"UserMaster","screenOrder":"4"},
+    {"screenName":"RoleMaster","screenOrder":"5"},
+    {"screenName":"NotificationMaster","screenOrder":"6"}]

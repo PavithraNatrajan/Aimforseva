@@ -1,0 +1,4 @@
+{"level":"verbose","message":"Verbose info","timestamp":"10:00:34"}
+{"level":"info","message":"Hello world","timestamp":"10:00:35"}
+{"level":"warn","message":"Warning message","timestamp":"10:00:35"}
+{"level":"error","message":"Error info","timestamp":"10:00:35"}

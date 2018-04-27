@@ -1,0 +1,83 @@
+{"level":"verbose","message":"Verbose info","timestamp":"08:48:54"}
+{"level":"info","message":"Hello world","timestamp":"08:48:54"}
+{"level":"warn","message":"Warning message","timestamp":"08:48:54"}
+{"level":"error","message":"Error info","timestamp":"08:48:54"}
+{"level":"info","message":"schema created","timestamp":"08:48:56"}
+{"level":"info","message":"user created","timestamp":"08:48:56"}
+{"level":"info","message":"schema created","timestamp":"08:48:56"}
+{"level":"info","message":"user created","timestamp":"08:48:56"}
+{"level":"info","message":"schema created","timestamp":"08:48:56"}
+{"level":"info","message":"user created","timestamp":"08:48:56"}
+{"level":"info","message":"schema created","timestamp":"08:48:56"}
+{"level":"info","message":"user created","timestamp":"08:48:56"}
+{"level":"info","message":"photo schema created","timestamp":"08:48:56"}
+{"level":"info","message":"staff schema created","timestamp":"08:48:56"}
+{"level":"info","message":"staff info created","timestamp":"08:48:56"}
+{"level":"info","message":"schema created","timestamp":"08:48:56"}
+{"level":"info","message":"user created","timestamp":"08:48:56"}
+{"level":"info","message":"schema created","timestamp":"08:48:57"}
+{"message":"failed to connect to server [localhost:27017] on first connect","name":"MongoError","stack":"MongoError: failed to connect to server [localhost:27017] on first connect\n    at Pool.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\topologies\\server.js:325:35)\n    at emitOne (events.js:116:13)\n    at Pool.emit (events.js:211:7)\n    at Connection.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\pool.js:270:12)\n    at Object.onceWrapper (events.js:317:30)\n    at emitTwo (events.js:126:13)\n    at Connection.emit (events.js:214:7)\n    at Socket.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\connection.js:173:49)\n    at Object.onceWrapper (events.js:315:30)\n    at emitOne (events.js:116:13)\n    at Socket.emit (events.js:211:7)\n    at emitErrorNT (internal/streams/destroy.js:64:8)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","level":"error","timestamp":"08:48:58"}
+{"level":"info","message":"GET------------------------------------","timestamp":"08:55:44"}
+{"level":"info","message":"GET------------------------------------","timestamp":"08:56:04"}
+{"level":"info","message":"GET------------------------------------","timestamp":"08:57:44"}
+{"level":"verbose","message":"Verbose info","timestamp":"09:09:07"}
+{"level":"info","message":"Hello world","timestamp":"09:09:07"}
+{"level":"warn","message":"Warning message","timestamp":"09:09:07"}
+{"level":"error","message":"Error info","timestamp":"09:09:07"}
+{"level":"info","message":"schema created","timestamp":"09:09:08"}
+{"level":"info","message":"user created","timestamp":"09:09:08"}
+{"level":"info","message":"schema created","timestamp":"09:09:08"}
+{"level":"info","message":"user created","timestamp":"09:09:08"}
+{"level":"info","message":"schema created","timestamp":"09:09:08"}
+{"level":"info","message":"user created","timestamp":"09:09:08"}
+{"level":"info","message":"schema created","timestamp":"09:09:08"}
+{"level":"info","message":"user created","timestamp":"09:09:08"}
+{"level":"info","message":"photo schema created","timestamp":"09:09:08"}
+{"level":"info","message":"staff schema created","timestamp":"09:09:08"}
+{"level":"info","message":"staff info created","timestamp":"09:09:08"}
+{"level":"info","message":"schema created","timestamp":"09:09:08"}
+{"level":"info","message":"user created","timestamp":"09:09:08"}
+{"level":"info","message":"schema created","timestamp":"09:09:08"}
+{"message":"failed to connect to server [localhost:27017] on first connect","name":"MongoError","stack":"MongoError: failed to connect to server [localhost:27017] on first connect\n    at Pool.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\topologies\\server.js:325:35)\n    at emitOne (events.js:116:13)\n    at Pool.emit (events.js:211:7)\n    at Connection.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\pool.js:270:12)\n    at Object.onceWrapper (events.js:317:30)\n    at emitTwo (events.js:126:13)\n    at Connection.emit (events.js:214:7)\n    at Socket.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\connection.js:173:49)\n    at Object.onceWrapper (events.js:315:30)\n    at emitOne (events.js:116:13)\n    at Socket.emit (events.js:211:7)\n    at emitErrorNT (internal/streams/destroy.js:64:8)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","level":"error","timestamp":"09:09:09"}
+{"level":"verbose","message":"Verbose info","timestamp":"09:10:28"}
+{"level":"info","message":"Hello world","timestamp":"09:10:28"}
+{"level":"warn","message":"Warning message","timestamp":"09:10:28"}
+{"level":"error","message":"Error info","timestamp":"09:10:28"}
+{"level":"info","message":"schema created","timestamp":"09:10:29"}
+{"level":"info","message":"user created","timestamp":"09:10:29"}
+{"level":"info","message":"schema created","timestamp":"09:10:29"}
+{"level":"info","message":"user created","timestamp":"09:10:29"}
+{"level":"info","message":"schema created","timestamp":"09:10:29"}
+{"level":"info","message":"user created","timestamp":"09:10:29"}
+{"level":"info","message":"schema created","timestamp":"09:10:29"}
+{"level":"info","message":"user created","timestamp":"09:10:29"}
+{"level":"info","message":"photo schema created","timestamp":"09:10:29"}
+{"level":"info","message":"staff schema created","timestamp":"09:10:29"}
+{"level":"info","message":"staff info created","timestamp":"09:10:29"}
+{"level":"info","message":"schema created","timestamp":"09:10:29"}
+{"level":"info","message":"user created","timestamp":"09:10:29"}
+{"level":"info","message":"schema created","timestamp":"09:10:29"}
+{"message":"failed to connect to server [localhost:27017] on first connect","name":"MongoError","stack":"MongoError: failed to connect to server [localhost:27017] on first connect\n    at Pool.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\topologies\\server.js:325:35)\n    at emitOne (events.js:116:13)\n    at Pool.emit (events.js:211:7)\n    at Connection.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\pool.js:270:12)\n    at Object.onceWrapper (events.js:317:30)\n    at emitTwo (events.js:126:13)\n    at Connection.emit (events.js:214:7)\n    at Socket.<anonymous> (D:\\sobana_bkup\\pendrive_bkup_03Mar\\keerthika\\sms_new\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\connection.js:173:49)\n    at Object.onceWrapper (events.js:315:30)\n    at emitOne (events.js:116:13)\n    at Socket.emit (events.js:211:7)\n    at emitErrorNT (internal/streams/destroy.js:64:8)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","level":"error","timestamp":"09:10:31"}
+{"level":"info","message":"GET------------------------------------","timestamp":"09:10:36"}
+{"level":"info","message":"GET------------------------------------","timestamp":"09:10:56"}
+{"level":"info","message":"GET------------------------------------","timestamp":"09:12:36"}
+{"level":"verbose","message":"Verbose info","timestamp":"10:49:54"}
+{"level":"info","message":"Hello world","timestamp":"10:49:54"}
+{"level":"warn","message":"Warning message","timestamp":"10:49:54"}
+{"level":"error","message":"Error info","timestamp":"10:49:54"}
+{"message":"failed to connect to server [localhost:27017] on first connect","name":"MongoError","stack":"MongoError: failed to connect to server [localhost:27017] on first connect\n    at Pool.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\topologies\\server.js:325:35)\n    at emitOne (events.js:116:13)\n    at Pool.emit (events.js:211:7)\n    at Connection.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\pool.js:270:12)\n    at Object.onceWrapper (events.js:317:30)\n    at emitTwo (events.js:126:13)\n    at Connection.emit (events.js:214:7)\n    at Socket.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\connection.js:173:49)\n    at Object.onceWrapper (events.js:315:30)\n    at emitOne (events.js:116:13)\n    at Socket.emit (events.js:211:7)\n    at emitErrorNT (internal/streams/destroy.js:64:8)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","level":"error","timestamp":"10:49:56"}
+{"level":"verbose","message":"Verbose info","timestamp":"10:58:00"}
+{"level":"info","message":"Hello world","timestamp":"10:58:00"}
+{"level":"warn","message":"Warning message","timestamp":"10:58:00"}
+{"level":"error","message":"Error info","timestamp":"10:58:00"}
+{"message":"failed to connect to server [localhost:27017] on first connect","name":"MongoError","stack":"MongoError: failed to connect to server [localhost:27017] on first connect\n    at Pool.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\topologies\\server.js:325:35)\n    at emitOne (events.js:116:13)\n    at Pool.emit (events.js:211:7)\n    at Connection.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\pool.js:270:12)\n    at Object.onceWrapper (events.js:317:30)\n    at emitTwo (events.js:126:13)\n    at Connection.emit (events.js:214:7)\n    at Socket.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\connection.js:173:49)\n    at Object.onceWrapper (events.js:315:30)\n    at emitOne (events.js:116:13)\n    at Socket.emit (events.js:211:7)\n    at emitErrorNT (internal/streams/destroy.js:64:8)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","level":"error","timestamp":"10:58:02"}
+{"level":"verbose","message":"Verbose info","timestamp":"11:00:10"}
+{"level":"info","message":"Hello world","timestamp":"11:00:10"}
+{"level":"warn","message":"Warning message","timestamp":"11:00:10"}
+{"level":"error","message":"Error info","timestamp":"11:00:10"}
+{"message":"failed to connect to server [localhost:27017] on first connect","name":"MongoError","stack":"MongoError: failed to connect to server [localhost:27017] on first connect\n    at Pool.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\topologies\\server.js:325:35)\n    at emitOne (events.js:116:13)\n    at Pool.emit (events.js:211:7)\n    at Connection.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\pool.js:270:12)\n    at Object.onceWrapper (events.js:317:30)\n    at emitTwo (events.js:126:13)\n    at Connection.emit (events.js:214:7)\n    at Socket.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\connection.js:173:49)\n    at Object.onceWrapper (events.js:315:30)\n    at emitOne (events.js:116:13)\n    at Socket.emit (events.js:211:7)\n    at emitErrorNT (internal/streams/destroy.js:64:8)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","level":"error","timestamp":"11:00:13"}
+{"level":"verbose","message":"Verbose info","timestamp":"11:38:56"}
+{"level":"info","message":"Hello world","timestamp":"11:38:56"}
+{"level":"warn","message":"Warning message","timestamp":"11:38:56"}
+{"level":"error","message":"Error info","timestamp":"11:38:56"}
+{"message":"failed to connect to server [localhost:27017] on first connect","name":"MongoError","stack":"MongoError: failed to connect to server [localhost:27017] on first connect\n    at Pool.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\topologies\\server.js:325:35)\n    at emitOne (events.js:116:13)\n    at Pool.emit (events.js:211:7)\n    at Connection.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\pool.js:270:12)\n    at Object.onceWrapper (events.js:317:30)\n    at emitTwo (events.js:126:13)\n    at Connection.emit (events.js:214:7)\n    at Socket.<anonymous> (D:\\sobana_bkup\\projectTemplate\\node_modules\\mongoose\\node_modules\\mongodb\\node_modules\\mongodb-core\\lib\\connection\\connection.js:173:49)\n    at Object.onceWrapper (events.js:315:30)\n    at emitOne (events.js:116:13)\n    at Socket.emit (events.js:211:7)\n    at emitErrorNT (internal/streams/destroy.js:64:8)\n    at _combinedTickCallback (internal/process/next_tick.js:138:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)","level":"error","timestamp":"11:38:58"}
